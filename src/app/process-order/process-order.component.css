@@ -1,0 +1,70 @@
+h4 {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+    text-transform: uppercase;
+}
+.form-group, .form-check, button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.adress {
+    padding-top: 15px;
+}
+button {
+    background: #f72464;
+    border-color: #f72464;
+    color: white;
+    width: 220px;
+}
+button:hover {
+    background: white !important;
+    border-color: #f72464 !important;
+    color: #52575d !important;
+    background-image: none !important;  
+    outline-color: #f72464 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+}
+button:visited, button:focus {
+    border-color: #f72464 !important;
+    background-image: none !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+}
+a:hover {
+    color: #f72464 !important;
+}
+h4 {
+    color: #222222
+} 
+label, p, a {
+    color: #52575d;
+}
+input, select, textarea{
+    color: #222222;
+}
+input:focus, textarea:focus, input:hover, textarea:hover {
+    color: #222222;
+    border-color: #222222;
+    box-shadow: 0 1px 1px rgba(37, 37, 37, 0.075) inset, 0 0 8px #52575d;
+    outline: 0 none;
+}
+.form-control-plaintext:focus, .form-control-plaintext:hover {
+    color: #222222;
+    border-color: white;
+    box-shadow: none;
+    outline: 0 none;
+}
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+textarea::-webkit-scrollbar-track {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #52575d;
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: #222222;
+  outline: 0.5px solid #222222;
+  border-color: #52575d;
+}
+p, h4 {
+    cursor: default;
+}

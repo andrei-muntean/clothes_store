@@ -1,0 +1,50 @@
+.container{
+    padding-top: 20px;
+}
+ngb-carousel {
+    position: absolute;
+    left: 30%;
+    right: 0;
+}
+.info-description {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    z-index: 1;
+}
+img {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    max-height: 650px;
+}
+h1 {
+    display: block;
+    color: #f72464;
+    font-size: 2rem;
+}
+p {
+    color: #52575d;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+button {
+    background: #f72464;
+    border-color: #f72464;
+    color: white;
+    width: 150px;
+}
+button:hover {
+    background: white !important;
+    border-color: #f72464 !important;
+    color: #52575d !important;
+    background-image: none !important;  
+    outline-color: #f72464 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+}
+button:visited, button:focus {
+    border-color: #f72464 !important;
+    background-image: none !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+}

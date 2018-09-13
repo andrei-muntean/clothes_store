@@ -1,0 +1,73 @@
+.row {
+    padding-top: 5px;
+}
+.products-carousel {
+    max-width: 500px;
+    max-height: 650px;
+}
+img {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    max-width: 550px;
+    max-height: 650px;
+}
+form {
+    padding-top: 5px;
+}
+.btn {
+    background: #f72464;
+    border-color: #f72464;
+    color: white;
+    width: 120px;
+    box-shadow: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+button:hover {
+    background: white !important;
+    color: #52575d !important;
+    outline-color: #f72464 !important;
+    border: 1px solid #f72464 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464 !important;
+}
+button:visited, button:focus {
+    border-color: #f72464 !important;
+    background-image: none !important;  
+    outline-color: #f72464 !important;
+}
+.btn-group{
+    width: 120px;
+    text-align: center;
+}
+.dropdown-menu, .dropdown-item {
+    background: white;
+    box-shadow: none !important;
+}
+.dropdown-item:hover {
+    background: #f72464;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+}
+h2, h3 {
+    color: #222222;
+}
+h6 {
+    color: #222222;
+}
+p {
+    color: #222222;
+    padding-left: 10px;
+}
+.description, .care {
+    border-bottom: 1px solid #222222;
+    margin-bottom: 20px;
+}
+h3 {
+    padding-bottom: 10px;
+}
+* {
+    cursor: default;
+}

@@ -1,0 +1,38 @@
+.card {
+    background: white;
+    border-color: white;
+}
+.card:hover {
+    border: 1px solid #f72464;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+}
+
+.card-img-top, .card-title {
+    cursor: pointer;
+}
+
+.card-text {
+    cursor: default;
+}
+
+.card-title:hover {
+    color: #f72464;
+    -webkit-text-stroke: 1px;
+    border: none;
+    outline: none;
+}
+
+h5 {
+    font-size: 14pt;
+    font: bold;
+    color: #222222;
+    height: auto;
+    text-align: center;
+}
+
+h6 {
+    font: bold;
+    color: #f72464;
+    height: auto;
+    text-align: center;
+}

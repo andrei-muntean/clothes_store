@@ -1,0 +1,27 @@
+.content-pane {
+    padding-top: 40px;
+}
+
+ul {
+    top: 130px; /* for sticky-top in order to keep the category list sticked */
+}
+
+ul, li {
+    padding-top: 15px;
+    background: white;
+    color: #222222;
+    border: none;
+}
+
+li:hover {
+    cursor: pointer;
+    color: #f72464;
+    font: bold;
+    -webkit-text-stroke: 1px;
+}
+
+.selected {
+    color: #f72464;
+    font: bold;
+    -webkit-text-stroke: 1px;
+}

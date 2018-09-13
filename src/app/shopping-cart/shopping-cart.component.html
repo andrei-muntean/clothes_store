@@ -1,0 +1,81 @@
+<div class="content-pane">
+  <div *ngIf="products === undefined" class="shopping-cart-without-products">
+    <img class="empty-basket-img" src="assets/images/empty-basket.png" alt="Your Basket is empty!!!">
+    <div class="top-right">Your Basket is empty</div>
+  </div>
+  <div *ngIf="products !== undefined && products.length > 0">
+    <div class="shopping-cart-header">
+      <h3>Shopping Basket</h3>
+    </div>
+    <div class="shopping-cart-with-products">
+      <table class="shopping-cart-table">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Description</th>
+            <th scope="col">Size</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="shopping-cart-item" *ngFor="let product of products">
+            <td class="shopping-cart-img">
+              <a [routerLink]="['/shop/', product.productId]">
+                <img src="https://s3.eu-central-1.amazonaws.com/{{product.images[0].content}}">
+              </a>
+            </td>
+            <td class="shopping-cart-title">
+              <a [routerLink]="['/shop/', product.productId]">{{product.name}}</a>
+            </td>
+            <td class="shopping-cart-size">-</td>
+            <td class="shopping-cart-qty">
+              <span>
+                <button type="button" class="btn btn-primary shopping-cart-button-prev" (click)="decreaseQty()">&#8249;</button>
+                <span class="shopping-cart-qty-display">1</span>
+                <button type="button" class="btn btn-primary shopping-cart-button-next" (click)="increaseQty()">&#8250;</button>
+              </span>
+            </td>
+            <td class="shopping-cart-price">{{product.price | currency:'USD':true}}</td>
+            <td class="shopping-cart-remove">
+              <button type="button" class="btn btn-primary button-delete" (click)="removeProduct(product)">x</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="shopping-cart-order-price" scope="row">Total Products:</th>
+            <td class="shopping-cart-order-price">$180</td>
+          </tr>
+          <tr>
+            <th class="shopping-cart-shipping-price" scope="row">Estimated Shipping Costs:</th>
+            <td class="shopping-cart-shipping-price">$120</td>
+          </tr>
+          <tr class="shopping-cart-total-order-price">
+            <th scope="row">Total:</th>
+            <td>
+              <strong>$300</strong>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <span class="offleft">Total Tax</span>
+            </th>
+            <td>
+              <em>* Including VAT</em>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="shopping-cart-buttons">
+      <button class="btn-continue-shopping" routerLink="">
+        Continue Shopping
+      </button>
+      <button class="btn-continue-checkout" routerLink="/processorder">
+        Continue
+      </button>
+    </div>
+  </div>
+</div>
