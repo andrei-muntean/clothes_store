@@ -1,27 +1,33 @@
 .content-pane {
-    padding-top: 40px;
+    padding-top: 20px;
 }
-
-ul {
-    top: 130px; /* for sticky-top in order to keep the category list sticked */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    text-align: center;
 }
-
-ul, li {
-    padding-top: 15px;
-    background: white;
-    color: #222222;
-    border: none;
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
 }
-
-li:hover {
+.up-footer {
+    padding-top: 20px;
+}
+a {
+    color: white;
+    padding: 0 10px 0 10px;
+    text-transform: uppercase;
+}
+.sizing-btn:hover, .contact-btn:hover {
     cursor: pointer;
     color: #f72464;
-    font: bold;
-    -webkit-text-stroke: 1px;
+    text-decoration: none;
 }
-
-.selected {
-    color: #f72464;
-    font: bold;
-    -webkit-text-stroke: 1px;
+p {
+    color: gray;
+    font-size: 8pt;
 }
