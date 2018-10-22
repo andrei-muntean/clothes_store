@@ -1,6 +1,5 @@
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from '../../../node_modules/rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { IPromotion } from '../models';
 import { HttpClient } from '@angular/common/http';
 

@@ -1,6 +1,3 @@
-.container{
-    padding-top: 20px;
-}
 ngb-carousel {
     position: absolute;
     left: 30%;
@@ -17,7 +14,6 @@ img {
     top: 0;
     width: 100%;
     height: auto;
-    max-height: 650px;
 }
 h1 {
     display: block;

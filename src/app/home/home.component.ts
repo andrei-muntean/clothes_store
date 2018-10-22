@@ -1,4 +1,4 @@
-import { IPromotion } from './../models';
+import { IPromotion } from '../models';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
