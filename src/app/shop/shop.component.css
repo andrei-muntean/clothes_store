@@ -1,5 +1,8 @@
 .content-pane {
-    padding-top: 20px;
+    padding-top: 10px;
+}
+.row {
+    padding-bottom: 80px;
 }
 .footer {
     position: fixed;

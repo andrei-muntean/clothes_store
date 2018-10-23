@@ -6,7 +6,6 @@
     border: 1px solid #f72464;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
 }
-
 .card-img-top, .card-title {
     cursor: pointer;
 }
@@ -17,7 +16,6 @@
 
 .card-title:hover {
     color: #f72464;
-    -webkit-text-stroke: 1px;
     border: none;
     outline: none;
 }
