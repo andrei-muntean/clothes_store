@@ -13,6 +13,7 @@ export class ProductDetailsComponent {
   selectedSize = '';
   title: string = '';
   price: number;
+  category: string;
   images: any[] = [];
   description: any[] = [];
   care: any[] = [];
@@ -33,6 +34,7 @@ export class ProductDetailsComponent {
       this.selectedSize = this.stocks[0].size;
       this.title = product.name;
       this.price = product.price;
+      this.category = product.category.name;
       this.description = product.description;
       this.care = product.care;
       this.product = product;

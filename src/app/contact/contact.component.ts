@@ -15,6 +15,6 @@ export class ContactComponent {
 
   onSubmit() {
     this.submited = true;
-    this.contactService.contact(this.model);
+    this.contactService.contact(this.model).subscribe(value => console.log(value));
   }
 }
