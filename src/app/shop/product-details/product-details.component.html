@@ -1,13 +1,36 @@
+<div class="prev-arrow">
+  <div class="interior-prev-arrow">
+    <a class="anchor-class" href="#">
+      <svg enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect fill="none" height="50" width="50" />
+        <polygon points="35,47.25 37.086,45.164 16.922,25 37.086,4.836 35,2.75 12.75,25 " />
+        <rect fill="none" height="50" width="50" />
+      </svg>
+    </a>
+  </div>
+</div>
+<div class="next-arrow">
+  <div class="interior-next-arrow">
+    <a class="anchor-class" href="#">
+      <svg enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect fill="none" height="50" width="50" />
+        <polygon points="15,2.75 12.914,4.836 33.078,25 12.914,45.164 15,47.25 37.25,25 " />
+      </svg>
+    </a>
+  </div>
+</div>
 <div class="logo-brand">
-  <div class="interior-logo-brand">
-    <img src="assets/images/logo.png" width="70" height="70" alt="Anca Morar Logo">
+  <div class="interior-logo-brand" routerLink="/">
+    <img class="logo" src="assets/images/logo.png" width="70" height="70" alt="Anca Morar Logo">
   </div>
 </div>
 <div class="row">
   <div class="col">
     <ngb-carousel class="products-carousel">
       <ng-template ngbSlide *ngFor="let image of images">
-        <img src="https://s3.eu-central-1.amazonaws.com/{{image.content}}" alt="image.name">
+        <img class="carousel-img" src="https://s3.eu-central-1.amazonaws.com/{{image.content}}" alt="image.name">
       </ng-template>
     </ngb-carousel>
   </div>

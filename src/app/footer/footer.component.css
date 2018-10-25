@@ -17,6 +17,9 @@ a {
     padding: 0 10px 0 10px;
     text-transform: uppercase;
 }
+svg:hover path {
+    fill: #f72464;
+}
 .sizing-btn:hover, .contact-btn:hover {
     cursor: pointer;
     color: #f72464;
