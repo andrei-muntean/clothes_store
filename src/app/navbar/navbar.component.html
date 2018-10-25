@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shop">Shop</a>
+        <a class="nav-link" routerLink="/catalog">Shop</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/sizing">Sizing</a>
@@ -30,7 +30,7 @@
           <li class="shopping-cart-item" *ngFor="let product of products| slice:0:3; let i=index">
             <img class="shopping-cart-img" src="https://s3.eu-central-1.amazonaws.com/{{product.images[0].content}}">
             <p class="shopping-cart-item-description">
-              <a class="shopping-cart-description" [routerLink]="['/shop/', product.productId]">{{product.name | uppercase}}</a>
+              <a class="shopping-cart-description" [routerLink]="['/catalog/', product.productId]">{{product.name | uppercase}}</a>
               <span class="shopping-cart-price">{{product.price | currency:'USD':true}}</span>
             </p>
           </li>

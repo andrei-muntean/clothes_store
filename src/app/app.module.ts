@@ -19,12 +19,13 @@ import { AddProductsComponent } from './add-products/add-products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProcessOrderComponent } from './process-order/process-order.component';
 import { ProcessPaymentComponent } from './process-payment/process-payment.component';
+import { FooterComponent } from './footer/footer.component';
 
 /* here we define routs */
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'shop', component: ShopComponent },
-  { path: 'shop/:id', component: ProductDetailsComponent },
+  { path: 'catalog', component: ShopComponent },
+  { path: 'catalog/:id', component: ProductDetailsComponent },
   { path: 'video', component: VideosComponent },
   { path: 'sizing', component: SizingComponent },
   { path: 'contact', component: ContactComponent },
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     AddProductsComponent,
     ShoppingCartComponent,
     ProcessOrderComponent,
-    ProcessPaymentComponent
+    ProcessPaymentComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

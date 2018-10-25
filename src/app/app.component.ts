@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Anca Morar';
+  showFooter: boolean = false;
+
+  constructor(location: Location, router: Router) {
+    // don't show footer on home page
+    router.events.subscribe((val => {
+      if(location.path() === '') {
+        this.showFooter = false;
+      }
+      else {
+        this.showFooter = true;
+      }
+    }))
+  }
 }
