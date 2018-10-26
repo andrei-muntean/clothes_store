@@ -3,7 +3,7 @@
     position: absolute;
     z-index: 2;
     left: 0;
-    top: 45%;
+    top: 42%;
     padding-left: 15px;
 }
 .next-arrow {
@@ -11,8 +11,34 @@
     position: absolute;
     z-index: 2;
     right: 0;
-    top: 45%;
+    top: 42%;
     padding-right: 15px;
+}
+.grid-view {
+    width: 40px;
+    height: 40px;
+    left: 13%;
+    top: calc(100% - 130px);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+.grid-view:hover {
+    box-shadow: 2px 2px 6px 0px #e4dfde;
+    cursor: pointer;
+}
+.grid-view:hover .grid-svg {
+    fill: #f72464;
+}
+.grid-view:active, .grid-view:focus {
+    outline: none;
+}
+.interior-grid-view {
+    padding-top: 6px;
+    cursor: pointer;
 }
 svg {
     cursor: pointer;
@@ -24,20 +50,24 @@ svg:hover {
 .logo-brand {
     background-color: transparent;
     position: absolute;
-    top: 40px;
     z-index: 2;
-    left: 47.5%;
-}
-.interior-logo-brand {
-    width: 70px;
-    height: 70px;
+    top: 20px;
+    left: calc(100vh - 120px);
+    width: 120px;
+    height: 100px;
     background-color: white;
+    box-shadow: 1px 1px 6px 0px #e4dfde;
+    text-align: center;
+}
+.logo-text {
+    padding-top: 3px;
+    font-size: 6pt;
+    text-transform: uppercase;
+    color: #d7d6d6;
 }
 .logo {
+    padding-top: 5px;
     cursor: pointer;
-}
-.row {
-    padding-top: 15px;
 }
 .container {
     padding-top: 10%;
@@ -63,6 +93,9 @@ h5 {
 h6 {
     color: #c4c4c4;
     font-size: 10pt;
+}
+.descr-line, .care-line, .price-line {
+    font-size: 12pt;
 }
 .list-group-item {
     border: none;
