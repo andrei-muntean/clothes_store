@@ -40,8 +40,8 @@ export class ProductDetailsComponent {
       this.product = product;
     });
     // carousel configuration
-    carouselConfig.showNavigationArrows = true;
-    carouselConfig.showNavigationIndicators = false;
+    carouselConfig.showNavigationArrows = false;
+    carouselConfig.showNavigationIndicators = true;
   }
 
   /**
@@ -52,6 +52,9 @@ export class ProductDetailsComponent {
     this.selectedSize = value;
   }
 
+  /**
+   * add product to cart and update the number of products
+   */
   addProdToCart() {
     this._productService.addProductToCart(this.product);
     this._productService.updateNrProds(true);

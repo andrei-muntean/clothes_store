@@ -33,7 +33,7 @@ export class ProductsService {
     let prodUrl = this.url + '/' + productId;
     return this._http.get(prodUrl);
   }
-
+  
   /**
    * Add a new product in cart
    * @param product - product to add in cart
@@ -47,6 +47,10 @@ export class ProductsService {
     this.products.next(newProducts);
   }
 
+  /**
+   * Remove given product from cart
+   * @param product - product to remove
+   */
   removeProductFromCart(product: IProduct) {
     let newProducts = this.products.getValue();
     let index = newProducts.indexOf(product);
@@ -54,6 +58,10 @@ export class ProductsService {
     this.products.next(newProducts);
   }
 
+  /**
+   * Update the current number of products in cart
+   * @param increase - true if the current number should be increased, false otherwise
+   */
   updateNrProds(increase: boolean) {
     let newProductNr = increase ? this.productsNr.getValue() + 1 : this.productsNr.getValue() - 1;
     this.productsNr.next(newProductNr);
