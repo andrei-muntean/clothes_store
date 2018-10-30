@@ -3,19 +3,27 @@ table {
     padding-top: 15px;
     padding-bottom: 15px;
 }
+label {
+    padding-top: 10px !important;
+    padding-bottom: 10px;
+    color: #52575d;
+}
+h4 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
 p {
-    padding-left: 10px;
-}
-h6 {
-    color: #222222;
-}
-h6 {
     padding-top: 20px;
 }
-.title {
-    width: 50%;
-    border-bottom: 1px solid #52575d;
-    margin-bottom: 20px;
+a {
+    font-weight: bolder;
+    margin-left: 2px;
+}
+a:hover {
+    font-weight: bolder;
+    color: #f72464;
+    cursor: pointer;
 }
 * {
     color: #222222;

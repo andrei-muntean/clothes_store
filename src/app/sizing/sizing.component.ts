@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sizing.component.html',
   styleUrls: ['./sizing.component.css']
 })
-export class SizingComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class SizingComponent { }
