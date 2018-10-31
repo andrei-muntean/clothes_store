@@ -1,6 +1,6 @@
 .prev-arrow {
     background-color: transparent;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     left: 0;
     top: 42%;
@@ -8,7 +8,7 @@
 }
 .next-arrow {
     background-color: transparent;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     right: 0;
     top: 42%;
@@ -17,14 +17,15 @@
 .grid-view {
     width: 40px;
     height: 40px;
-    left: 13%;
-    top: calc(100% - 130px);
+    left: 30px;
+    top: calc(100% - 55px);
     border-radius: 50%;
     position: absolute;
     z-index: 2;
     background-color: white;
     text-align: center;
     vertical-align: middle;
+    cursor: pointer;
 }
 .grid-view:hover, .interior-grid-view:hover {
     cursor: pointer;
@@ -50,11 +51,12 @@ svg:hover {
     background-color: transparent;
     position: absolute;
     z-index: 2;
-    top: 20px;
-    left: calc(100vh - 120px);
+    top: 0;
+    left: 440px;
     width: 120px;
     height: 100px;
     background-color: white;
+    border: 1px solid #e4dfde;
     box-shadow: 1px 1px 6px 0px #e4dfde;
     text-align: center;
 }
@@ -70,10 +72,13 @@ svg:hover {
 }
 .container {
     padding-top: 10%;
-    padding-left: 10%;
+    padding-left: 80px;
     padding-right: 10%;
+    min-width: 350px;
 }
 .products-carousel {
+    min-width: 500px;
+    min-height: 650px;
     max-width: 500px;
     max-height: 650px;
 }
@@ -84,6 +89,9 @@ svg:hover {
     height: auto;
     max-width: 550px;
     max-height: 650px;
+}
+.col, .row {
+    position: relative;
 }
 h5 {
     font: bold;
