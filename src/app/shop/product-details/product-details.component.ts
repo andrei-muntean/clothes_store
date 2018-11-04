@@ -1,7 +1,7 @@
 import { ProductsService } from '../../products.service';
 import { IStock, IProduct } from '../../models';
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,7 +9,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
   selectedSize = '';
   title: string = '';
   price: number;
@@ -22,28 +22,43 @@ export class ProductDetailsComponent {
 
   constructor(
     private _productService: ProductsService,
-    activeRoute: ActivatedRoute,
+    private _activeRoute: ActivatedRoute,
+    private _router: Router,
     carouselConfig: NgbCarouselConfig
   ) {
-    // id of selected product
-    let id = activeRoute.snapshot.paramMap.get('id');
-    // request product for current id
-    _productService.getProduct(id).subscribe((product: any) => {
-      this.images = product.images;
-      this.stocks = product.stocks;
-      this.selectedSize = this.stocks[0].size;
-      this.title = product.name;
-      this.price = product.price;
-      this.category = product.category.name;
-      this.description = product.description;
-      this.care = product.care;
-      this.product = product;
-    });
     // carousel configuration
     carouselConfig.showNavigationArrows = false;
     carouselConfig.showNavigationIndicators = true;
   }
 
+  ngOnInit() {
+    this._activeRoute.params.subscribe(
+      params => {
+        const id = +params['id'];
+        this._productService.getProduct(id).subscribe((product: any) => {
+          this.images = product.images;
+          this.stocks = product.stocks;
+          this.selectedSize = this.stocks[0].size;
+          this.title = product.name;
+          this.price = product.price;
+          this.category = product.category.name;
+          this.description = product.description;
+          this.care = product.care;
+          this.product = product;
+        });
+      })
+  }
+
+  nextProduct() {
+    let id = this.product.productId + 1;
+    id = id > this._productService.totalNrProds ? 1 : id;
+    this._router.navigate(['/catalog/' + id]);
+  }
+  prevProduct() {
+    let id = this.product.productId - 1;
+    id = id === 0 ? this._productService.totalNrProds : id;
+    this._router.navigate(['/catalog/' + id]);
+  }
   /**
    * Change current selected size to specified one
    * @param value - new size value

@@ -15,6 +15,8 @@ export class ProductsService {
   // this is used for cart icon to update its current value
   private productsNr = new BehaviorSubject<number>(0);
   productsNrObs = this.productsNr.asObservable();
+  // number of products
+  totalNrProds: number = 0;
 
   constructor(private _http: HttpClient) { }
 
@@ -33,7 +35,7 @@ export class ProductsService {
     let prodUrl = this.url + '/' + productId;
     return this._http.get(prodUrl);
   }
-  
+
   /**
    * Add a new product in cart
    * @param product - product to add in cart
