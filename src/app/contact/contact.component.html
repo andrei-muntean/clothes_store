@@ -1,6 +1,12 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+  </ol>
+</nav>
 <h4>Contact us</h4>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="formGroupExampleInput1">Full Name *</label>
@@ -51,7 +57,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
-  <div class="col-md-6">
+  <div class="col">
     <div class="email">
       <label for="formGroupExampleInput5">Email</label>
       <p>

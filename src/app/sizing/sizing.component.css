@@ -16,13 +16,26 @@ h4 {
 p {
     padding-top: 20px;
 }
-a {
+.contact-us {
     font-weight: bolder;
     margin-left: 2px;
 }
-a:hover {
+.contact-us:hover {
     font-weight: bolder;
     color: #f72464;
+    cursor: pointer;
+}
+.breadcrumb {
+    background-color: white;
+    padding: 0 0 15px 0;
+    margin: 0;
+}
+.breadcrumb-item.active {
+    cursor: default;
+    color: #f72464;
+}
+a:hover {
+    color: #f72464 !important;
     cursor: pointer;
 }
 * {

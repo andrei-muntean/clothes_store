@@ -14,12 +14,7 @@ export class AppComponent {
   constructor(location: Location, router: Router) {
     // don't show footer on home page
     router.events.subscribe((val => {
-      if(location.path() === '') {
-        this.showFooter = false;
-      }
-      else {
-        this.showFooter = true;
-      }
+      this.showFooter = location.path() !== '';
     }))
   }
 }
