@@ -15,16 +15,31 @@ export class ProductsService {
   // this is used for cart icon to update its current value
   private productsNr = new BehaviorSubject<number>(0);
   productsNrObs = this.productsNr.asObservable();
-  // number of products
-  totalNrProds: number = 0;
+  // products
+  allProducts: IProduct[];
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {
+    // products
+    this.getAll().subscribe((data: IProduct[]) => {
+      // request products
+      this.allProducts = data;
+    });
+  }
 
   /**
    * Request all products
    */
   getAll(): Observable<any> {
     return this._http.get(this.url);
+  }
+
+  getProducts(page: number, nrProducts: number) {
+    return this._http.get(this.url, {
+      params: {
+        offset: page.toString(),
+        limit: nrProducts.toString()
+      }
+    });
   }
 
   /**
@@ -67,5 +82,26 @@ export class ProductsService {
   updateNrProds(increase: boolean) {
     let newProductNr = increase ? this.productsNr.getValue() + 1 : this.productsNr.getValue() - 1;
     this.productsNr.next(newProductNr);
+  }
+
+  slideToNextProduct(product: IProduct, next: boolean): IProduct {
+    if (!this.allProducts) {
+      // products
+      this.getAll().subscribe((data: IProduct[]) => {
+        // request products
+        this.allProducts = data;
+      });
+    }
+    this.allProducts.forEach(
+      (item, index) => {
+        if (item === product) {
+          let prodIndex = next ? index + 1 : index - 1;
+          prodIndex = prodIndex === 0 ? this.allProducts.length - 1 : prodIndex;
+          prodIndex = prodIndex === this.allProducts.length ? 1 : prodIndex;
+          return this.allProducts[prodIndex];
+        }
+      }
+    );
+    return null;
   }
 }

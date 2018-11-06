@@ -16,11 +16,13 @@ h6 {
 .row {
     padding-bottom: 15px;
 }
-.page-link {
-    color: #222222;
+:host /deep/ .page-item.active .page-link {
+    background-color: #f72464;
+    border-color: #f72464;
 }
-.page-link:hover {
-    background-color: transparent;
-    border: 1px solid #f72464;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
+:host /deep/ .page-link {
+    color: #f72464;
+}
+:host /deep/ .page-link:focus {
+    box-shadow: 0 0 0.2rem rgba(173, 6, 70, 0.25);
 }
