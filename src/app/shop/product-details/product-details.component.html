@@ -43,7 +43,7 @@
     <p class="logo-text">Designed By
       <br> Anca Morar</p>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" [@carousel]="product">
     <ngb-carousel class="products-carousel">
       <ng-template ngbSlide *ngFor="let image of images">
         <img class="carousel-img" src="https://s3.eu-central-1.amazonaws.com/{{image.content}}" alt="image.name">
@@ -61,7 +61,7 @@
       </div>
     </div>
   </div>
-  <div class="col">
+  <div class="col" [@product]="product">
     <div class="container">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">

@@ -3,11 +3,32 @@ import { IStock, IProduct } from '../../models';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  styleUrls: ['./product-details.component.css'],
+  animations: [
+    trigger('carousel', [
+      transition('* => *', [
+        query('ngb-carousel',style({ transform: 'translateX(-100%)'})),
+        query('ngb-carousel',
+          stagger('600ms', [
+            animate('900ms', style({ transform: 'translateX(0)'}))
+        ]))
+      ])
+    ]),
+    trigger('product', [
+      transition('* => *', [
+        query('ul',style({ transform: 'translateY(100%)'})),
+        query('ul',
+          stagger('600ms', [
+            animate('900ms', style({ transform: 'translateY(0)'}))
+        ]))
+      ])
+    ])
+  ]
 })
 export class ProductDetailsComponent implements OnInit {
   selectedSize = '';
@@ -46,17 +67,17 @@ export class ProductDetailsComponent implements OnInit {
           this.care = product.care;
           this.product = product;
         });
-      })
+      });
   }
 
   nextProduct() {
-    let id = this.product.productId + 1;
-    id = id > this._productService.totalNrProds ? 1 : id;
+    let nextId: number = this.product.productId + 1;
+    let id: number = nextId === 4 ? 1 : nextId;
     this._router.navigate(['/catalog/' + id]);
   }
   prevProduct() {
-    let id = this.product.productId - 1;
-    id = id === 0 ? this._productService.totalNrProds : id;
+    let prevId: number = this.product.productId - 1;
+    let id: number = prevId === 0 ? 3 : prevId;
     this._router.navigate(['/catalog/' + id]);
   }
   /**
