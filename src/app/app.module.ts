@@ -9,11 +9,11 @@ import { VideosComponent } from './videos/videos.component';
 import { ShopComponent } from './shop/shop.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -26,13 +26,13 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalog', component: ShopComponent },
   { path: 'catalog/:id', component: ProductDetailsComponent },
-  { path: 'video', component: VideosComponent },
+  // { path: 'video', component: VideosComponent },
   { path: 'sizing', component: SizingComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'account', component: AccountComponent },
-  { path: 'shopingcart', component: ShoppingCartComponent},
-  { path: 'processorder', component: ProcessOrderComponent},
-  { path: 'processpayment', component: ProcessPaymentComponent},
+  // { path: 'account', component: AccountComponent },
+  // { path: 'shopingcart', component: ShoppingCartComponent},
+  // { path: 'processorder', component: ProcessOrderComponent},
+  // { path: 'processpayment', component: ProcessPaymentComponent},
   { path: 'addproducts', component: AddProductsComponent}
 ];
 
@@ -57,6 +57,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(

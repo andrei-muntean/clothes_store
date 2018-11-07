@@ -18,13 +18,7 @@ export class ProductsService {
   // products
   allProducts: IProduct[];
 
-  constructor(private _http: HttpClient) {
-    // products
-    this.getAll().subscribe((data: IProduct[]) => {
-      // request products
-      this.allProducts = data;
-    });
-  }
+  constructor(private _http: HttpClient) { }
 
   /**
    * Request all products
