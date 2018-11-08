@@ -93,6 +93,9 @@ svg:hover {
 .col, .row {
     position: relative;
 }
+.col-sm-1.stock-col {
+    text-align: center;
+}
 h5 {
     font: bold;
     font-size: 14pt;

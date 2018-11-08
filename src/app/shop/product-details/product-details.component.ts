@@ -50,6 +50,8 @@ export class ProductDetailsComponent implements OnInit {
     // carousel configuration
     carouselConfig.showNavigationArrows = false;
     carouselConfig.showNavigationIndicators = true;
+    carouselConfig.pauseOnHover = true;
+    carouselConfig.interval = 15000;
   }
 
   ngOnInit() {
