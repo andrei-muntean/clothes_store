@@ -1,6 +1,6 @@
 import { IProduct } from './models';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 
@@ -10,13 +10,18 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class ProductsService {
 
   url = 'http://18.197.19.50:3200/product';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    })
+  };
+  // products
+  allProducts: IProduct[];
   private products = new BehaviorSubject<IProduct[]>(undefined);
   productsObs = this.products.asObservable();
   // this is used for cart icon to update its current value
   private productsNr = new BehaviorSubject<number>(0);
   productsNrObs = this.productsNr.asObservable();
-  // products
-  allProducts: IProduct[];
 
   constructor(private _http: HttpClient) { }
 
@@ -45,6 +50,9 @@ export class ProductsService {
     return this._http.get(prodUrl);
   }
 
+  addProduct(product: IProduct): Observable<any> {
+    return this._http.post(this.url, JSON.stringify(product), this.httpOptions);
+  }
   /**
    * Add a new product in cart
    * @param product - product to add in cart

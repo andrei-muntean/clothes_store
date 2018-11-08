@@ -3,7 +3,7 @@ export interface IProduct {
     category: ICategory;
     name: string;
     images: IImageFile[];
-    stocks: IStock;
+    stocks: IStock[];
     discount: number;
     isAvailableOnCommand: boolean;
     description: string[];
