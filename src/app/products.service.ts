@@ -32,6 +32,11 @@ export class ProductsService {
     return this._http.get(this.url);
   }
 
+  /**
+   * Get specified number of products per page
+   * @param page 
+   * @param nrProducts 
+   */
   getProducts(page: number, nrProducts: number) {
     return this._http.get(this.url, {
       params: {
@@ -47,6 +52,11 @@ export class ProductsService {
    */
   getProduct(productId): Observable<any> {
     let prodUrl = this.url + '/' + productId;
+    return this._http.get(prodUrl);
+  }
+
+  getNavigationProduct(productId: number): Observable<any> {
+    let prodUrl = this.url + '/' + productId + '/navigation';
     return this._http.get(prodUrl);
   }
 

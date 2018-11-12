@@ -1,3 +1,4 @@
+import { IImageFile, ICategory } from './../../models';
 import { ProductsService } from '../../products.service';
 import { IStock, IProduct } from '../../models';
 import { Component, OnInit } from '@angular/core';
@@ -31,15 +32,13 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
   ]
 })
 export class ProductDetailsComponent implements OnInit {
-  selectedSize = '';
-  title: string = '';
-  price: number;
-  category: string;
-  images: any[] = [];
-  description: any[] = [];
-  care: any[] = [];
-  stocks: IStock[] = [];
+  nextProduct: IProduct;
+  prevProduct: IProduct;
   product: IProduct;
+  images: IImageFile[];
+  stocks: IStock[];
+  description: string[];
+  care: string[];
 
   constructor(
     private _productService: ProductsService,
@@ -58,36 +57,24 @@ export class ProductDetailsComponent implements OnInit {
     this._activeRoute.params.subscribe(
       params => {
         const id = +params['id'];
-        this._productService.getProduct(id).subscribe((product: any) => {
-          this.images = product.images;
-          this.stocks = product.stocks;
-          this.selectedSize = this.stocks[0].size;
-          this.title = product.name;
-          this.price = product.price;
-          this.category = product.category.name;
-          this.description = product.description;
-          this.care = product.care;
-          this.product = product;
+        this._productService.getNavigationProduct(id).subscribe((data: any) => {
+          console.log(data);
+          this.prevProduct = data['previous'];
+          this.nextProduct = data['next'];
+          this.product = data['current'];
+          this.images = this.product.images;
+          this.stocks = this.product.stocks;
+          this.description = this.product.description;
+          this.care = this.product.care;
         });
       });
   }
 
-  nextProduct() {
-    let nextId: number = this.product.productId + 1;
-    let id: number = nextId === 4 ? 1 : nextId;
-    this._router.navigate(['/catalog/' + id]);
+  goToNextProduct() {
+    this._router.navigate(['/catalog/' + this.nextProduct.productId]);
   }
-  prevProduct() {
-    let prevId: number = this.product.productId - 1;
-    let id: number = prevId === 0 ? 3 : prevId;
-    this._router.navigate(['/catalog/' + id]);
-  }
-  /**
-   * Change current selected size to specified one
-   * @param value - new size value
-   */
-  changeSize(value: any) {
-    this.selectedSize = value;
+  goToPrevProduct() {
+    this._router.navigate(['/catalog/' + this.prevProduct.productId]);
   }
 
   /**

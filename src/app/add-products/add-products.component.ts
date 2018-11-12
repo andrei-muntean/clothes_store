@@ -1,5 +1,5 @@
 import { ProductsService } from './../products.service';
-import { ICategory, IImageFile, IStock } from './../models';
+import { ICategory, IImageFile, IStock, ProductSex } from './../models';
 import { IProduct } from '../models';
 import { Component } from '@angular/core';
 
@@ -52,6 +52,7 @@ export class AddProductsComponent {
     // product
     let product: IProduct = {
       productId: 0,
+      sex: ProductSex.Female,
       category: category,
       name: this.model.name,
       images: images,
@@ -60,7 +61,8 @@ export class AddProductsComponent {
       isAvailableOnCommand: true,
       description: description,
       care: care,
-      price: this.model.price
+      price: this.model.price,
+      addedAt: new Date()
     }
     // post the product
     this._productService.addProduct(product)

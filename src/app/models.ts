@@ -1,30 +1,49 @@
+// Non definion means that those are the models you will receive from the server
 export interface IProduct {
-    productId: number;
-    category: ICategory;
+    productId?: number;
+	category: ICategory;
+	sex: ProductSex;	
     name: string;
     images: IImageFile[];
     stocks: IStock[];
     discount: number;
-    isAvailableOnCommand: boolean;
+    isAvailableOnCommand?: boolean;
     description: string[];
     care: string[];
+	price: number;
+	addedAt: Date;
+}
+
+// Definition means the models you want to add on server
+export interface IProducttDefinition {
+	categoryId: number;
+    name: string;
+    images: IImageFile[];
+    stocks: IStock[];
     price: number;
+    discount: number;
+    isOnPromotion: boolean;
+    promotionImage?: IImageFile;
+    isAvailableOnCommand: boolean;
+    description: string[];
+    care: string;
 }
 
 export interface ICategory {
-    categoryId: number;
+    categoryId?: number;
     name: string;
 }
 
 export interface IImageFile {
     name: string;
 	content: any;
-	format: string;
+	format: string; 
+	isBase64Encoded?: boolean;
 }
 
 export interface IStock {
     size: string;
-    count: number;
+    count?: number;
 }
 
 export interface OrderDefinition {
@@ -91,19 +110,26 @@ export interface OrderCategory {
 	sex: ProductSex;
 }
 
-enum ProductSex {
-    Male, Female, Unisex
+export enum ProductSex {
+	Male  = 'male', 
+	Female = 'female', 
+	Unisex = 'unisex'
 }
 
-enum ProductSize {
-    XS, S, M, L, XL, XXL, XXXL
+export enum ProductSize {
+	XS = 'XS', 
+	S = 'S', 
+	M = 'M', 
+	L = 'L', 
+	XL = 'XL', 
+	XXL = 'XXL', 
+	XXXL = 'XXXL'
 }
 
 export interface IPromotion {
 	promotionId: number;
-	title: string;
-	description: string;
-	promotedProductId: number;
+	name: string;
+	price: number;
+	discount: number;
 	image: IImageFile;
-	expiresAt: Date;
 }

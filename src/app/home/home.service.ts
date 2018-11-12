@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HomeService {
-  url = 'http://18.197.19.50:3200/promotion/active';
+  url = 'http://18.197.19.50:3200/product/promotion';
   private promotions = new BehaviorSubject<IPromotion[]>(undefined);
   promotionsObs = this.promotions.asObservable();
   
