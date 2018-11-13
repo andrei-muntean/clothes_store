@@ -26,7 +26,7 @@ export interface IProducttDefinition {
     promotionImage?: IImageFile;
     isAvailableOnCommand: boolean;
     description: string[];
-    care: string;
+    care: string[];
 }
 
 export interface ICategory {

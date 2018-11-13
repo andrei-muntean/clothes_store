@@ -1,4 +1,4 @@
-import { IProduct } from './models';
+import { IProduct, IProducttDefinition } from './models';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -60,7 +60,8 @@ export class ProductsService {
     return this._http.get(prodUrl);
   }
 
-  addProduct(product: IProduct): Observable<any> {
+  addProduct(product: IProducttDefinition): Observable<any> {
+    console.log(product);
     return this._http.post(this.url, JSON.stringify(product), this.httpOptions);
   }
   /**

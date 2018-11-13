@@ -1,41 +1,45 @@
-<div class="row content-pane" style="padding-top: 20px">
-  <div class="col">
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Name">
-      </div>
-      <div class="form-group">
-        <input type="number" class="form-control" id="price" [(ngModel)]="model.price" name="price" #price="ngModel" placeholder="$ Price">
-      </div>
-      <div class="form-group">
-        <input type="number" class="form-control" id="discount" [(ngModel)]="model.discount" name="discount" #discount="ngModel" placeholder="Discount">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" id="care" [(ngModel)]="model.care" name="care" #care="ngModel" placeholder="Care - Split by commas for multiple lines">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description" #description="ngModel" placeholder="Description - Split by commas for multiples lines">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" id="category" [(ngModel)]="model.category" name="category" #category="ngModel" placeholder="Category Name">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" id="size" [(ngModel)]="model.size" name="size" #size="ngModel" placeholder="Available Sizes - Split by commas for multiple Sizes">
+<div class="container">
+  <h1>Add New Product</h1>
+  <div class="row" style="padding-top: 20px">
+    <div class="col">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" id="price" [(ngModel)]="model.price" name="price" #price="ngModel" placeholder="$ Price">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" id="discount" [(ngModel)]="model.discount" name="discount" #discount="ngModel"
+            placeholder="Discount">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="care" [(ngModel)]="model.care" name="care" #care="ngModel" placeholder="Care - Split by commas for multiple lines">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description" #description="ngModel"
+            placeholder="Description - Split by commas for multiples lines">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="size" [(ngModel)]="model.size" name="size" #size="ngModel" placeholder="Available Sizes - Split by commas for multiple Sizes">
+        </div>
+        <div>
+          <button class="btn btn-primary" style="width: 100%">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col upload-file-container">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="fileUploader" (change)="onFileChanged($event)">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+        <div class="row">
+          <div class="col-sm-4 preview-images" *ngFor="let image of images">
+            <img [id]="image" [src]="image" [alt]="image">
+            <button class="btn btn-primary" (click)="removeImage(image)">Remove</button>
+          </div>
+        </div>
       </div>
       <div>
-        <button class="btn btn-primary" style="width: 100%">Submit</button>
-      </div>
-    </form>
-  </div>
-  <div class="col">
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="formGroupExampleInput8" (change)="onFileChanged($event)">
-      <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
-    <div class="row">
-      <div class="col" *ngFor="let file of files">
-        <img src="file" width="100" height="200" alt="{{file.name}}">
-      </div>
     </div>
   </div>
 </div>

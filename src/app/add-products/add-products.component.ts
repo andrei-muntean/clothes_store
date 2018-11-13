@@ -1,6 +1,5 @@
 import { ProductsService } from './../products.service';
-import { ICategory, IImageFile, IStock, ProductSex } from './../models';
-import { IProduct } from '../models';
+import {  IImageFile, IStock, IProducttDefinition } from './../models';
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,63 +10,73 @@ import { Component } from '@angular/core';
 export class AddProductsComponent {
 
   model: any = {};
-  files: File[] = [];
+  images: string[] = [];
   submited = false;
 
   constructor(private _productService: ProductsService) { }
 
-  onFileChanged(event) {
-    this.files.push(event.target.files[0]);
+  onFileChanged(event): void {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = e => this.images.push(reader.result);
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(image: string): void {
+    const indexToDel = this.images.indexOf(image);
+    if (indexToDel > -1) {
+      this.images.splice(indexToDel, 1);
+    }
+  }
+
+  getTypeOfEncodedImage(encoded: string) {
+    let result = null;
+    if (typeof encoded !== 'string') {
+      return result;
+    }
+    let mime = encoded.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/);
+    if (mime && mime.length) {
+      result = mime[1]; // image/:type
+    }
+    return result.split('/')[1]; // only the type
   }
 
   onSubmit() {
     this.submited = true;
-    // category
-    let category: ICategory = {
-      categoryId: 0,
-      name: this.model.category
-    }
-    // images
+    // parse model
+    // -- images
     let images: IImageFile[] = [];
-    this.files.forEach(file => {
-      images.push({
-        name: file.name,
-        content: file,
-        format: file.type
-      });
-    });
-    // stocks
+    this.images.forEach(image => images.push({
+      name: this.model.name,
+      content: image,
+      format: this.getTypeOfEncodedImage(image),
+      isBase64Encoded: true
+    }))
+    // -- stocks
     let stocks: IStock[] = [];
-    (<string>this.model.size).split(',')
-    .forEach(s => {
-      stocks.push({ 
-        size: s, 
-        count: 1 
-      });
-    });
-    // description
-    let description: string[] = (<string>this.model.description).split(',');
-    // care
-    let care: string[] = (<string>this.model.care).split(',');
-    // product
-    let product: IProduct = {
-      productId: 0,
-      sex: ProductSex.Female,
-      category: category,
+    let sizes: string[] = (<string>this.model.size).split(',')
+    sizes.forEach(size => stocks.push({ 
+      size: size.replace(/ /g,''), // remove white space
+      count: 1 
+    }));
+    // create product
+    let product: IProducttDefinition = {
+      categoryId: 0,
       name: this.model.name,
       images: images,
       stocks: stocks,
-      discount: this.model.discount,
-      isAvailableOnCommand: true,
-      description: description,
-      care: care,
       price: this.model.price,
-      addedAt: new Date()
+      discount: 0,
+      isOnPromotion: false,
+      promotionImage: null,
+      isAvailableOnCommand: true,
+      description: (<string>this.model.description).split(','),
+      care: (<string>this.model.care).split(',')
     }
-    // post the product
-    this._productService.addProduct(product)
-    .subscribe(res => {
-      console.log(res);
-    })
+    // post to server
+    this._productService.addProduct(product).subscribe(responseData => console.log(responseData));;
   }
 }
