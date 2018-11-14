@@ -4,6 +4,7 @@
     height: 80px;
     background-color: black;
     text-align: center;
+    position: relative;
 }
 .footer > .container {
     padding-right: 15px;
@@ -28,4 +29,5 @@ svg:hover path {
 p {
     color: gray;
     font-size: 8pt;
+    cursor: default;
 }
