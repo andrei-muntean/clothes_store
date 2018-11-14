@@ -73,6 +73,10 @@ export class AddProductsComponent {
     this.promoImage = undefined
   }
 
+  getBase64(text: string): string {
+    return text.split(',')[1];
+  }
+
   /**
    * Parse the base64 string of an image to get its type
    * @param encoded - base64 string of an image
@@ -99,14 +103,19 @@ export class AddProductsComponent {
       size: size.replace(/ /g, ''), // remove white space
       count: 1
     }));
+    // -- images
+    this.images.forEach(image => image.content = this.getBase64(image.content))
+    if (this.promoImage) {
+      this.promoImage.content = this.getBase64(this.promoImage.content);
+    }
     // create product
     let product: IProducttDefinition = {
-      categoryId: 0,
+      categoryId: 1,
       name: this.model.name,
       images: this.images,
       stocks: stocks,
       price: this.model.price,
-      discount: 0,
+      discount: this.model.discount,
       isOnPromotion: this.isPromotionImage,
       promotionImage: this.isPromotionImage ? this.promoImage : null,
       isAvailableOnCommand: true,
@@ -114,6 +123,16 @@ export class AddProductsComponent {
       care: (<string>this.model.care).split(',')
     }
     // post to server
-    this._productService.addProduct(product).subscribe(responseData => console.log(responseData));;
+    this._productService.addProduct(product).subscribe(responseData => { 
+      console.log(responseData);
+    });
+    // clear page
+    this.images.splice(0, this.images.length);
+    this.lastImageName = '';
+    this.promoImage = null;
+    this.promoImageText = '';
+    this.isPromotionImage = false;
+    this.model = {};
+    this.submited = false;
   }
 }
