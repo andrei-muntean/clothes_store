@@ -39,3 +39,27 @@ h1 {
     font: bold;
     text-align: center;
 }
+.breadcrumb {
+    background-color: white;
+    padding: 0 0 15px 0;
+    margin: 0;
+}
+.breadcrumb-item {
+    padding-top: 7px;
+    padding-left: 15px;
+}
+.breadcrumb-item.active {
+    cursor: default;
+    color: #f72464;
+}
+.navbar-brand {
+    padding-left: 15px;
+}
+a:hover {
+    color: #f72464 !important;
+    cursor: pointer;
+}
+* {
+    color: #222222;
+    cursor: default;
+}
