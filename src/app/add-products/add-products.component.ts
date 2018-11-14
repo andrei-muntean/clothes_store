@@ -1,5 +1,5 @@
 import { ProductsService } from './../products.service';
-import {  IImageFile, IStock, IProducttDefinition } from './../models';
+import { IImageFile, IStock, IProducttDefinition } from './../models';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,28 +10,73 @@ import { Component } from '@angular/core';
 export class AddProductsComponent {
 
   model: any = {};
-  images: string[] = [];
+  images: IImageFile[] = [];
+  lastImageName: string = 'Choose Images For This Product';
+  isPromotionImage: boolean = false;
+  promoImage: IImageFile;
+  promoImageText: string = 'Choose Promotion Image For This Product';
   submited = false;
 
   constructor(private _productService: ProductsService) { }
 
+  changeIsPromotionImage() {
+    this.isPromotionImage = !this.isPromotionImage;
+  }
+
   onFileChanged(event): void {
     if (event.target.files && event.target.files[0]) {
+      // image to laod
+      let image: IImageFile = {};
       const file = event.target.files[0];
-
+      image.name = file.name;
+      image.format = file.type.split('/')[1];
+      image.isBase64Encoded = true;
       const reader = new FileReader();
-      reader.onload = e => this.images.push(reader.result);
+      reader.onload = e => {
+        image.content = reader.result;
+        this.images.push(image);
+      }
       reader.readAsDataURL(file);
+      // update file uploader text
+      this.lastImageName = image.name;
     }
   }
 
-  removeImage(image: string): void {
+  removeImage(image: IImageFile): void {
     const indexToDel = this.images.indexOf(image);
     if (indexToDel > -1) {
       this.images.splice(indexToDel, 1);
     }
   }
 
+  onPromoFileUpload(event) {
+    if (event.target.files && event.target.files[0]) {
+      // image to laod
+      let image: IImageFile = {};
+      const file = event.target.files[0];
+      image.name = file.name;
+      image.format = file.type.split('/')[1];
+      image.isBase64Encoded = true;
+      const reader = new FileReader();
+      reader.onload = e => {
+        image.content = reader.result;
+        this.promoImage = image;
+      }
+      // update promo file chooser
+      this.promoImageText = image.name;
+      // read as url
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removePromoImage() {
+    this.promoImage = undefined
+  }
+
+  /**
+   * Parse the base64 string of an image to get its type
+   * @param encoded - base64 string of an image
+   */
   getTypeOfEncodedImage(encoded: string) {
     let result = null;
     if (typeof encoded !== 'string') {
@@ -47,31 +92,23 @@ export class AddProductsComponent {
   onSubmit() {
     this.submited = true;
     // parse model
-    // -- images
-    let images: IImageFile[] = [];
-    this.images.forEach(image => images.push({
-      name: this.model.name,
-      content: image,
-      format: this.getTypeOfEncodedImage(image),
-      isBase64Encoded: true
-    }))
     // -- stocks
     let stocks: IStock[] = [];
     let sizes: string[] = (<string>this.model.size).split(',')
-    sizes.forEach(size => stocks.push({ 
-      size: size.replace(/ /g,''), // remove white space
-      count: 1 
+    sizes.forEach(size => stocks.push({
+      size: size.replace(/ /g, ''), // remove white space
+      count: 1
     }));
     // create product
     let product: IProducttDefinition = {
       categoryId: 0,
       name: this.model.name,
-      images: images,
+      images: this.images,
       stocks: stocks,
       price: this.model.price,
       discount: 0,
-      isOnPromotion: false,
-      promotionImage: null,
+      isOnPromotion: this.isPromotionImage,
+      promotionImage: this.isPromotionImage ? this.promoImage : null,
       isAvailableOnCommand: true,
       description: (<string>this.model.description).split(','),
       care: (<string>this.model.care).split(',')

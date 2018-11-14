@@ -35,9 +35,9 @@ export interface ICategory {
 }
 
 export interface IImageFile {
-    name: string;
-	content: any;
-	format: string; 
+    name?: string;
+	content?: any;
+	format?: string; 
 	isBase64Encoded?: boolean;
 }
 

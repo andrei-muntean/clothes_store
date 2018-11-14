@@ -23,6 +23,23 @@
         <div class="form-group">
           <input type="text" class="form-control" id="size" [(ngModel)]="model.size" name="size" #size="ngModel" placeholder="Available Sizes - Split by commas for multiple Sizes">
         </div>
+        <div class="form-group">
+          <div class="promo-image-container">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input" data-toggle="tooltip" data-placement="bottom" title="Enable/Disable Promotion Image"
+                    (change)="changeIsPromotionImage()">
+                </div>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="promotionUploadFile" (change)="onPromoFileUpload($event)" aria-describedby="promotionUploadFile"
+                  [disabled]="isPromotionImage">
+                <label class="custom-file-label" for="promotionUploadFile">{{promoImageText}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
         <div>
           <button class="btn btn-primary" style="width: 100%">Submit</button>
         </div>
@@ -31,15 +48,15 @@
     <div class="col upload-file-container">
       <div class="custom-file">
         <input type="file" class="custom-file-input" id="fileUploader" (change)="onFileChanged($event)">
-        <label class="custom-file-label" for="customFile">Choose file</label>
+        <label class="custom-file-label" for="customFile">{{lastImageName}}</label>
         <div class="row">
           <div class="col-sm-4 preview-images" *ngFor="let image of images">
-            <img [id]="image" [src]="image" [alt]="image">
+            <img [id]="image.name" [src]="image.content" [alt]="image.name">
             <button class="btn btn-primary" (click)="removeImage(image)">Remove</button>
           </div>
         </div>
       </div>
       <div>
+      </div>
     </div>
   </div>
-</div>
