@@ -31,7 +31,8 @@ export interface IProducttDefinition {
 
 export interface ICategory {
     categoryId?: number;
-    name: string;
+	name: string;
+	sex?: ProductSex;
 }
 
 export interface IImageFile {
