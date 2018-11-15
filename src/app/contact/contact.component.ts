@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactService } from './contact.service';
+import { NgForm } from '../../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -13,8 +14,9 @@ export class ContactComponent {
 
   constructor(private contactService: ContactService) { }
 
-  onSubmit() {
+  onSubmit(f: NgForm) {
     this.submited = true;
     this.contactService.contact(this.model).subscribe(value => console.log(value));
+    f.resetForm();
   }
 }

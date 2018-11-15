@@ -14,7 +14,7 @@
 <h4>Contact us</h4>
 <div class="row">
   <div class="col-md-8">
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="formGroupExampleInput1">Full Name *</label>
         <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }">
@@ -67,7 +67,7 @@
     <div class="email">
       <label for="formGroupExampleInput5">Email</label>
       <p>
-        <a href="#" class="text">dummy@yahoo.com</a>
+        <a class="email-text">pretty_ancuta@yahoo.com</a>
       </p>
     </div>
     <div class="adress">

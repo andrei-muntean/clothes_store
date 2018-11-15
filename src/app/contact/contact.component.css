@@ -75,3 +75,7 @@ p, h4 {
 .navbar-brand {
     padding-left: 15px;
 }
+.email-text:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
