@@ -1,6 +1,8 @@
+import { CategoriesService } from './../shop/categories.service';
 import { ProductsService } from './../products.service';
-import { IImageFile, IStock, IProducttDefinition } from './../models';
+import { IImageFile, IStock, IProducttDefinition, ICategory } from './../models';
 import { Component } from '@angular/core';
+import { NgForm } from '../../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-add-products',
@@ -10,6 +12,7 @@ import { Component } from '@angular/core';
 export class AddProductsComponent {
 
   model: any = {};
+  categories: ICategory[] = [];
   images: IImageFile[] = [];
   lastImageName: string = 'Choose Images For This Product';
   isPromotionImage: boolean = false;
@@ -17,7 +20,11 @@ export class AddProductsComponent {
   promoImageText: string = 'Choose Promotion Image For This Product';
   submited = false;
 
-  constructor(private _productService: ProductsService) { }
+  constructor(private _productService: ProductsService, categoryService: CategoriesService) {
+    categoryService.getAll().subscribe(c => { 
+      this.categories = c;
+    });
+  }
 
   changeIsPromotionImage() {
     this.isPromotionImage = !this.isPromotionImage;
@@ -93,7 +100,7 @@ export class AddProductsComponent {
     return result.split('/')[1]; // only the type
   }
 
-  onSubmit() {
+  onSubmit(f: NgForm) {
     this.submited = true;
     // parse model
     // -- stocks
@@ -110,7 +117,7 @@ export class AddProductsComponent {
     }
     // create product
     let product: IProducttDefinition = {
-      categoryId: 1,
+      categoryId: this.model.category.categoryId,
       name: this.model.name,
       images: this.images,
       stocks: stocks,
@@ -123,7 +130,7 @@ export class AddProductsComponent {
       care: (<string>this.model.care).split(',')
     }
     // post to server
-    this._productService.addProduct(product).subscribe(responseData => { 
+    this._productService.addProduct(product).subscribe(responseData => {
       console.log(responseData);
     });
     // clear page
@@ -132,7 +139,6 @@ export class AddProductsComponent {
     this.promoImage = null;
     this.promoImageText = '';
     this.isPromotionImage = false;
-    this.model = {};
-    this.submited = false;
+    f.resetForm();
   }
 }

@@ -1,3 +1,6 @@
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ICategory } from './../models';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,11 +8,11 @@ import { Injectable } from '@angular/core';
 })
 export class CategoriesService {
 
-  categories: string[];
+  url: string = 'http://18.197.19.50:3200/category';
 
-  constructor() { }
+  constructor(private _http: HttpClient) { }
 
-  getAll(): string[] {
-    return ['All', 'Tops', 'Bottoms', 'Full Pieces', 'Body Suits', 'Accessories', 'On Sale'];
+  getAll(): Observable<any> {
+    return this._http.get(this.url);
   }
 }
