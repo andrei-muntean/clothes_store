@@ -2,9 +2,6 @@
     background: white;
     border-color: white;
 }
-.card-img-top {
-    max-height: 330px;
-}
 .card:hover {
     border: 1px solid #f72464;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f72464;
