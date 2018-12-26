@@ -2,49 +2,24 @@
   <a class="navbar-brand" routerLink="/">
     <img src="assets/images/logo.png" width="70" height="70" alt="Anca Morar Logo">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/catalog">Shop</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/sizing">Sizing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/contact">Contact</a>
-      </li>
-    </ul>
-  </div>
-  <div class="shopping-cart">
-    <a class="shopping-cart-icon" routerLink="/shopingcart">
-      <img src="assets/images/cart.svg" width="20" height="20" alt="Shopping Cart Icon" class="cart-svg">
-      <span class="badge">{{cartQty}}</span>
-    </a>
-    <div class="shopping-cart-preview" *ngIf="products">
-      <div id="shopping-cart-content">
-        <ul class="shopping-cart-container">
-          <li class="shopping-cart-item" *ngFor="let product of products| slice:0:3; let i=index">
-            <img class="shopping-cart-img" src="https://s3.eu-central-1.amazonaws.com/{{product.images[0].content}}">
-            <p class="shopping-cart-item-description">
-              <a class="shopping-cart-description" [routerLink]="['/catalog/', product.productId]">{{product.name | uppercase}}</a>
-              <span class="shopping-cart-price">{{product.price | currency:'USD':true}}</span>
-            </p>
-          </li>
-        </ul>
-        <div class="shopping-cart-more-items" *ngIf="products.length > 3">
-          <a class="shopping-cart-more-items-descr" routerLink="/shopingcart">
-            And
-            <strong>{{products.length - 3}}</strong> more Items
-          </a>
-        </div>
-        <div class="shopping-cart-actions">
-          <a routerLink="/shopingcart" class="button-secondary go-to-shopping-cart">See Shopping Cart</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/catalog">Looks</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/catalog">Dresses</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/catalog">Skirts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/catalog">Jackets</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/catalog">Tops</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/catalog">About Me</a>
+    </li>
+  </ul>
 </nav>
