@@ -1,7 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";   
+@import "~bootstrap/dist/css/bootstrap.css";  
+@font-face {
+    font-family: constant;
+    src: url(/assets/fonts/constant.ttf) format("truetype");
+} 
+@font-face {
+    font-family: dream orphans;
+    src: url(/assets/fonts/dream-orphans.ttf) format("truetype");
+} 
+@font-face {
+    font-family: dream orphans bold;
+    src: url(/assets/fonts/dream-orphans-bd.ttf) format("truetype");
+} 
+@font-face {
+    font-family: dream orphans italic;
+    src: url(/assets/fonts/dream-orphans-it.ttf) format("truetype");
+} 
+@font-face {
+    font-family: dream orphans bold italic;
+    src: url(/assets/fonts/dream-orphans-bd-it.ttf) format("truetype");
+}
 
 body{
+    font-family: 'dream orphans';
     padding-top: 10px;
     background-color: white !important;
 }
