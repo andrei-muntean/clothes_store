@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   // cartQty: number;
   categories: ICategory[] = [];
 
-  constructor(private categoryService: CategoriesService) {
+  constructor(categoryService: CategoriesService) {
     // load categories
     categoryService.getCategories().subscribe((data: any) => {
       this.categories = data;

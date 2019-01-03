@@ -3,7 +3,7 @@
 }
 .shop-tittle {
     text-align: center;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
 }
 h1 {
     font: bold;
@@ -25,4 +25,29 @@ h6 {
 }
 :host /deep/ .page-link:focus {
     box-shadow: 0 0 0.2rem rgba(173, 6, 70, 0.25);
+}
+.breadcrumb {
+    background-color: white;
+    padding: 0 0 15px 0;
+    margin: 0;
+}
+.breadcrumb-item {
+    padding-top: 7px;
+}
+.breadcrumb-item.active {
+    cursor: default;
+    color: #f72464;
+}
+.navbar-brand {
+    padding-left: 15px;
+}
+a {
+    color: #52575d;
+}
+a:hover {
+    color: #f72464 !important;
+    cursor: pointer;
+}
+h5, h6 {
+    cursor: default;
 }

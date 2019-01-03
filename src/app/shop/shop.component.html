@@ -3,6 +3,19 @@
         <h1>{{category.name}}</h1>
         <h6>Anca Morar</h6>
     </div>
+    <nav aria-label="breadcrumb">
+        <div class="row">
+            <a class="navbar-brand" routerLink="/">
+                <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Brand Logo">
+            </a>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a routerLink="/">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{category.name}}</li>
+            </ol>
+        </div>
+    </nav>
     <div class="row">
         <ng-container *ngFor="let product of products, let i = index">
             <div class="col-sm-3">
@@ -13,5 +26,6 @@
             <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
         </ng-container>
     </div>
-    <ngb-pagination class="d-flex justify-content-end" [collectionSize]='collectionSize' [(page)]='page' (pageChange)='pageChange($event)' [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+    <ngb-pagination *ngIf="products.length > 0" class="d-flex justify-content-end" [collectionSize]='collectionSize' [(page)]='page' (pageChange)='pageChange($event)'
+        [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>
