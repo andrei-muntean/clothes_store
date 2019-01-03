@@ -1,40 +1,24 @@
 <div class="container">
   <app-navbar></app-navbar>
   <!-- Info div -->
-  <div class=" col-2 info-container">
+  <div class="info-container">
     <div class="info-text">
       <h1>Anca
         <br> Morar</h1>
-      <h4>Fashion for
-        <br> everyone</h4>
+      <h4>Fashion for everyone</h4>
     </div>
   </div>
   <!-- Images div container -->
   <div class="row justify-content-center inner">
     <!-- Collection div -->
-    <div class="col-5 collection-container">
+    <div class="col-md-6 collection-container">
       <div class="collection-img">
-        <img src="assets/images/home-main.jpg">
+        <img src="assets/images/home-new.jpg">
       </div>
     </div>
     <!-- Whats New div -->
-    <div class="col-5 whats-new-container">
-      <div class="circle-div-holder">
-        <div class="circle-div">
-          <h6 class="new-header">NEW <br> 2019</h6>
-        </div>
-      </div>
-      <div class="whats-new-inner">
-        <div class="whats-new-first-img">
-          <img src="assets/images/home-new.jpg">
-        </div>
-        <div class="whats-new-second-img">
-          <img src="assets/images/home-new.jpg">
-        </div>
-        <div class="whats-new-third-img">
-          <img src="assets/images/home-new.jpg">
-        </div>
-      </div>
+    <div class="col-md-5 whats-new-container">
+      <app-home-new></app-home-new>
     </div>
   </div>
 </div>

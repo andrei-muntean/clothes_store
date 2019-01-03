@@ -20,6 +20,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProcessOrderComponent } from './process-order/process-order.component';
 import { ProcessPaymentComponent } from './process-payment/process-payment.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomeNewComponent } from './home/home-new/home-new.component';
 
 /* here we define routs */
 const appRoutes: Routes = [
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     ShoppingCartComponent,
     ProcessOrderComponent,
     ProcessPaymentComponent,
-    FooterComponent
+    FooterComponent,
+    HomeNewComponent
   ],
   imports: [
     BrowserModule,
