@@ -1,6 +1,6 @@
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { ProductCardComponent } from './shop/product-card/product-card.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './home/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';

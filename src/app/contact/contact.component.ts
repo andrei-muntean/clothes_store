@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ContactService } from './contact.service';
-import { NgForm } from '../../../node_modules/@angular/forms';
+import { ContactService } from '../contact.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',

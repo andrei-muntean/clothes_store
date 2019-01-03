@@ -2,7 +2,7 @@
 export interface IProduct {
     productId?: number;
 	category: ICategory;
-	sex: ProductSex;	
+	sex: string;	
     name: string;
     images: IImageFile[];
     stocks: IStock[];
@@ -32,7 +32,7 @@ export interface IProducttDefinition {
 export interface ICategory {
     categoryId?: number;
 	name: string;
-	sex?: ProductSex;
+	sex?: string;
 }
 
 export interface IImageFile {
@@ -84,7 +84,7 @@ export interface Order {
 
 export interface OrderedProduct {
 	productId: number;
-	category: ProductSex;
+	category: string;
 	name: string;
 	size: ProductSize;
 	count: number;
@@ -108,13 +108,7 @@ export interface Buyer {
 export interface OrderCategory {
 	categoryId: number;
 	name: string;
-	sex: ProductSex;
-}
-
-export enum ProductSex {
-	Male  = 'male', 
-	Female = 'female', 
-	Unisex = 'unisex'
+	sex: string;
 }
 
 export enum ProductSize {
@@ -132,5 +126,5 @@ export interface IPromotion {
 	name: string;
 	price: number;
 	discount: number;
-	image: IImageFile;
+	image: IImageFile[];
 }

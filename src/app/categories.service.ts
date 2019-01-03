@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ICategory } from './../models';
+import { ICategory } from './models';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class CategoriesService {
 
   constructor(private _http: HttpClient) { }
 
-  getAll(): Observable<any> {
+  getCategories(): Observable<any> {
     return this._http.get(this.url);
   }
 }

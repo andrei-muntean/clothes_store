@@ -3,20 +3,8 @@
     <img src="assets/images/logo.png" width="70" height="70" alt="Anca Morar Logo">
   </a>
   <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/catalog">Looks</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/catalog">Dresses</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/catalog">Skirts</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/catalog">Jackets</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/catalog">Tops</a>
+    <li class="nav-item" *ngFor = 'let category of categories'>
+      <a class="nav-link" routerLink="/catalog">{{category.name}}</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/catalog">About Me</a>

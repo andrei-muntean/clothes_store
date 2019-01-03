@@ -24,7 +24,7 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._productService.getProducts(--this.page, 20)
+    this._productService.getProducts(--this.page, 20, 1)
       .subscribe(
         (data: IProduct[]) => {
           console.log(data);
@@ -34,7 +34,7 @@ export class ShopComponent implements OnInit {
   }
 
   pageChange(page): void {
-    this._productService.getProducts(--page, 20)
+    this._productService.getProducts(--page, 20, 1)
       .subscribe(
         (data: IProduct[]) => {
           console.log(data);

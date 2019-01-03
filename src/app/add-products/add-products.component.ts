@@ -1,8 +1,8 @@
-import { CategoriesService } from './../shop/categories.service';
-import { ProductsService } from './../products.service';
-import { IImageFile, IStock, IProducttDefinition, ICategory } from './../models';
+import { CategoriesService } from '../categories.service';
+import { ProductsService } from '../products.service';
+import { IImageFile, IStock, IProducttDefinition, ICategory } from '../models';
 import { Component } from '@angular/core';
-import { NgForm } from '../../../node_modules/@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-products',
@@ -21,7 +21,7 @@ export class AddProductsComponent {
   submited = false;
 
   constructor(private _productService: ProductsService, categoryService: CategoriesService) {
-    categoryService.getAll().subscribe(c => { 
+    categoryService.getCategories().subscribe(c => { 
       this.categories = c;
     });
   }

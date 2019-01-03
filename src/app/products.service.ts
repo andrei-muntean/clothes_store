@@ -37,11 +37,12 @@ export class ProductsService {
    * @param page 
    * @param nrProducts 
    */
-  getProducts(page: number, nrProducts: number) {
+  getProducts(page: number, nrProducts: number, categoryId: number) {
     return this._http.get(this.url, {
       params: {
         offset: page.toString(),
-        limit: nrProducts.toString()
+        limit: nrProducts.toString(),
+        c: categoryId.toString()
       }
     });
   }

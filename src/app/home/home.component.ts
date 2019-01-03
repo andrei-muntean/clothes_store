@@ -1,5 +1,5 @@
-import { IPromotion } from '../models';
-import { HomeService } from './home.service';
+import { IPromotion, ICategory } from '../models';
+import { HomeService } from '../home.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -13,7 +13,7 @@ export class HomeComponent{
 
   constructor(homeService: HomeService) {
     // load images
-    homeService.getAll().subscribe((data: any) => { 
+    homeService.getPromotionItems().subscribe((data: any) => { 
       console.log(data);
       this.promotions = data;
     });
