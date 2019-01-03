@@ -1,7 +1,7 @@
 .footer {
     bottom: 0;
     width: 100%;
-    height: 80px;
+    height: 28px;
     background-color: black;
     text-align: center;
     position: relative;
@@ -10,24 +10,9 @@
     padding-right: 15px;
     padding-left: 15px;
 }
-.up-footer {
-    padding-top: 20px;
-}
-a {
-    color: white;
-    padding: 0 10px 0 10px;
-    text-transform: uppercase;
-}
-svg:hover path {
-    fill: #f72464;
-}
-.sizing-btn:hover, .contact-btn:hover {
-    cursor: pointer;
-    color: #f72464;
-    text-decoration: none;
-}
-p {
+.lo-footer {
     color: gray;
     font-size: 8pt;
     cursor: default;
+    padding-top: 5px;
 }
