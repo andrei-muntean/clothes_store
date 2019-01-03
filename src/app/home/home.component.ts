@@ -1,6 +1,6 @@
-import { IPromotion, ICategory } from '../models';
 import { HomeService } from '../home.service';
 import { Component } from '@angular/core';
+import { IImageFile } from '../models';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,15 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent{
 
-  promotions: IPromotion[] = [];
+  homeImage: string;
+  newImage: string;
 
   constructor(homeService: HomeService) {
     // load images
-    homeService.getPromotionItems().subscribe((data: any) => { 
+    homeService.getPromotionItems().subscribe((data: IImageFile[]) => { 
       console.log(data);
-      this.promotions = data;
+      this.homeImage = "https://s3.eu-central-1.amazonaws.com/" + data[0].content;
+      this.newImage = "https://s3.eu-central-1.amazonaws.com/" + data[1].content;
     });
    }
 

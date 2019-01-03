@@ -13,12 +13,12 @@
     <!-- Collection div -->
     <div class="col-md-6 collection-container">
       <div class="collection-img">
-        <img src="assets/images/home-new.jpg">
+        <img src={{homeImage}}>
       </div>
     </div>
     <!-- Whats New div -->
     <div class="col-md-5 whats-new-container">
-      <app-home-new></app-home-new>
+      <app-home-new [newImage]="newImage"></app-home-new>
     </div>
   </div>
 </div>
