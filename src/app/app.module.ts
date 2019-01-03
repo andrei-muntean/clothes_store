@@ -25,8 +25,8 @@ import { HomeNewComponent } from './home/home-new/home-new.component';
 /* here we define routs */
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'catalog', component: ShopComponent },
-  { path: 'catalog/:id', component: ProductDetailsComponent },
+  { path: 'catalog/:categoryId', component: ShopComponent },
+  { path: 'catalog/prod/:id', component: ProductDetailsComponent },
   // { path: 'video', component: VideosComponent },
   // { path: 'sizing', component: SizingComponent },
   // { path: 'contact', component: ContactComponent },

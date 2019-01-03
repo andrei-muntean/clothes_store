@@ -22,12 +22,12 @@
         <tbody>
           <tr class="shopping-cart-item" *ngFor="let product of products">
             <td class="shopping-cart-img">
-              <a [routerLink]="['/catalog/', product.productId]">
+              <a [routerLink]="['/catalog/prod/', product.productId]">
                 <img src="https://s3.eu-central-1.amazonaws.com/{{product.images[0].content}}">
               </a>
             </td>
             <td class="shopping-cart-title">
-              <a [routerLink]="['/catalog/', product.productId]">{{product.name}}</a>
+              <a [routerLink]="['/catalog/prod/', product.productId]">{{product.name}}</a>
             </td>
             <td class="shopping-cart-size">-</td>
             <td class="shopping-cart-qty">

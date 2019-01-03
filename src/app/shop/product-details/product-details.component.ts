@@ -71,10 +71,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   goToNextProduct() {
-    this._router.navigate(['/catalog/' + this.nextProduct.productId]);
+    this._router.navigate(['/catalog/prod/' + this.nextProduct.productId]);
   }
   goToPrevProduct() {
-    this._router.navigate(['/catalog/' + this.prevProduct.productId]);
+    this._router.navigate(['/catalog/prod/' + this.prevProduct.productId]);
   }
 
   /**
