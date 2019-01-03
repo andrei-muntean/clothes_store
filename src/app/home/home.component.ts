@@ -1,7 +1,6 @@
 import { IPromotion } from '../models';
 import { HomeService } from './home.service';
-import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +11,12 @@ export class HomeComponent{
 
   promotions: IPromotion[] = [];
 
-  constructor(homeService: HomeService, config: NgbCarouselConfig) {
+  constructor(homeService: HomeService) {
     // load images
     homeService.getAll().subscribe((data: any) => { 
       console.log(data);
       this.promotions = data;
     });
-    // config carousel
-    config.showNavigationArrows = false;
-    config.showNavigationIndicators = false;
    }
 
 }
