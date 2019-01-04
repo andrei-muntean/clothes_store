@@ -1,0 +1,29 @@
+.container {
+    padding-top: 70px;
+}
+.about-me-title {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+h1 {
+    font-family: 'constant';
+    text-transform: uppercase;
+}
+h4 {
+    color: #52575d;
+}
+.underline {
+    text-decoration: underline;
+}
+a:hover {
+    cursor: pointer;
+}
+img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+* {
+    cursor: default;
+}

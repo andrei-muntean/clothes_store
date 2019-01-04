@@ -21,6 +21,7 @@ import { ProcessOrderComponent } from './process-order/process-order.component';
 import { ProcessPaymentComponent } from './process-payment/process-payment.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeNewComponent } from './home/home-new/home-new.component';
+import { AboutMeComponent } from './about-me/about-me.component';
 
 /* here we define routs */
 const appRoutes: Routes = [
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
   // { path: 'shopingcart', component: ShoppingCartComponent},
   // { path: 'processorder', component: ProcessOrderComponent},
   // { path: 'processpayment', component: ProcessPaymentComponent},
-  { path: 'addproducts', component: AddProductsComponent}
+  { path: 'addproducts', component: AddProductsComponent},
+  { path: 'aboutMe', component: AboutMeComponent}
 ];
 
 @NgModule({
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     ProcessOrderComponent,
     ProcessPaymentComponent,
     FooterComponent,
-    HomeNewComponent
+    HomeNewComponent,
+    AboutMeComponent
   ],
   imports: [
     BrowserModule,
