@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Anca Morar';
   showFooter: boolean = false;
+  showNavBar: boolean = false;
 
   constructor(location: Location, router: Router) {
     // don't show footer on home page
     router.events.subscribe((val => {
       this.showFooter = location.path() !== '';
+      this.showNavBar = !location.path().includes('catalog');
     }))
   }
 }
