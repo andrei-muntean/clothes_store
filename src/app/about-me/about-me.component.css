@@ -23,6 +23,9 @@ img {
     left: 0;
     width: 100%;
     height: auto;
+    padding:1px;
+    border:1px solid #52575d;
+    background-color:#fff;
 }
 * {
     cursor: default;
