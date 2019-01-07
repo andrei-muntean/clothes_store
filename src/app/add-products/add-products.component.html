@@ -49,9 +49,14 @@
                 </div>
               </div>
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="promotionUploadFile" (change)="onPromoFileUpload($event)" aria-describedby="promotionUploadFile"
+                <input type="file" class="custom-file-input" id="promotionUploadFile" (change)="onPromoFileUpload($event)" aria-describedby="promotionMainUploadFile"
                   [disabled]="!isPromotionImage">
-                <label class="custom-file-label" for="promotionUploadFile">{{promoImageText}}</label>
+                <label class="custom-file-label" for="promotionUploadFile">{{promoMainImageText}}</label>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="promotionUploadFile" (change)="onPromoFileUpload($event)" aria-describedby="promotionNewUploadFile"
+                  [disabled]="!isPromotionImage">
+                <label class="custom-file-label" for="promotionUploadFile">{{promoNewImageText}}</label>
               </div>
             </div>
           </div>

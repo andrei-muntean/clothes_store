@@ -16,12 +16,13 @@ export class AddProductsComponent {
   images: IImageFile[] = [];
   lastImageName: string = 'Choose Images For This Product';
   isPromotionImage: boolean = false;
-  promoImage: IImageFile;
-  promoImageText: string = 'Choose Promotion Image For This Product';
+  promoImages: IImageFile[] = [];
+  promoMainImageText: string = 'Choose Image For Main Frame';
+  promoNewImageText: string = 'Choose Image For New Framet';
   submited = false;
 
   constructor(private _productService: ProductsService, categoryService: CategoriesService) {
-    categoryService.getCategories().subscribe(c => { 
+    categoryService.getCategories().subscribe(c => {
       this.categories = c;
     });
   }
@@ -67,17 +68,22 @@ export class AddProductsComponent {
       const reader = new FileReader();
       reader.onload = e => {
         image.content = reader.result;
-        this.promoImage = image;
+        this.promoImages.push(image);
       }
       // update promo file chooser
-      this.promoImageText = image.name;
+      if (this.promoImages.length > 1) {
+        this.promoNewImageText = image.name;
+      }
+      else {
+        this.promoMainImageText = image.name;
+      }
       // read as url
       reader.readAsDataURL(file);
     }
   }
 
   removePromoImage() {
-    this.promoImage = undefined
+    this.promoImages = undefined
   }
 
   getBase64(text: string): string {
@@ -112,8 +118,8 @@ export class AddProductsComponent {
     }));
     // -- images
     this.images.forEach(image => image.content = this.getBase64(image.content))
-    if (this.promoImage) {
-      this.promoImage.content = this.getBase64(this.promoImage.content);
+    if (this.promoImages) {
+      this.promoImages.forEach(promoImage => promoImage.content = this.getBase64(promoImage.content));
     }
     // create product
     let product: IProducttDefinition = {
@@ -124,7 +130,7 @@ export class AddProductsComponent {
       price: this.model.price,
       discount: this.model.discount,
       isOnPromotion: this.isPromotionImage,
-      promotionImage: this.isPromotionImage ? this.promoImage : null,
+      promotionImage: this.isPromotionImage ? this.promoImages : null,
       isAvailableOnCommand: true,
       description: (<string>this.model.description).split(','),
       care: (<string>this.model.care).split(',')
@@ -136,8 +142,9 @@ export class AddProductsComponent {
     // clear page
     this.images.splice(0, this.images.length);
     this.lastImageName = '';
-    this.promoImage = null;
-    this.promoImageText = '';
+    this.promoImages.splice(0, this.promoImages.length);
+    this.promoMainImageText = '';
+    this.promoNewImageText = '';
     this.isPromotionImage = false;
     f.resetForm();
   }

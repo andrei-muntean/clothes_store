@@ -23,7 +23,7 @@ export interface IProducttDefinition {
     price: number;
     discount: number;
     isOnPromotion: boolean;
-    promotionImage?: IImageFile;
+    promotionImage?: IImageFile[];
     isAvailableOnCommand: boolean;
     description: string[];
     care: string[];
