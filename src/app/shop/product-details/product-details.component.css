@@ -90,6 +90,9 @@ svg:hover {
     max-width: 550px;
     max-height: 650px;
 }
+.row {
+    overflow: hidden;
+}
 .col, .row {
     position: relative;
 }
