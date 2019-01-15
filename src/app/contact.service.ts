@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ContactService {
 
-  url = 'http://18.197.19.50:3200/contact';
+  url = 'http://18.222.40.189:3200/contact';
   // Headers?
   httpOptions = {
     headers: new HttpHeaders({

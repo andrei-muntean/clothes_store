@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class CategoriesService {
 
-  url: string = 'http://18.197.19.50:3200/category';
+  url: string = 'http://18.222.40.189:3200/category';
 
   constructor(private _http: HttpClient) { }
 

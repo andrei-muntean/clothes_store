@@ -32,11 +32,10 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
   ]
 })
 export class ProductDetailsComponent implements OnInit {
-  nextProduct: IProduct;
-  prevProduct: IProduct;
+  // nextProduct: IProduct;
+  // prevProduct: IProduct;
   product: IProduct;
   images: IImageFile[];
-  stocks: IStock[];
   description: string[];
   care: string[];
 
@@ -58,24 +57,22 @@ export class ProductDetailsComponent implements OnInit {
       params => {
         const id = +params['id'];
         this._productService.getNavigationProduct(id).subscribe((data: any) => {
-          console.log(data);
-          this.prevProduct = data['previous'];
-          this.nextProduct = data['next'];
+          // this.prevProduct = data['previous'];
+          // this.nextProduct = data['next'];
           this.product = data['current'];
           this.images = this.product.images;
-          this.stocks = this.product.stocks;
           this.description = this.product.description;
           this.care = this.product.care;
         });
       });
   }
 
-  goToNextProduct() {
-    this._router.navigate(['/catalog/prod/' + this.nextProduct.productId]);
-  }
-  goToPrevProduct() {
-    this._router.navigate(['/catalog/prod/' + this.prevProduct.productId]);
-  }
+  // goToNextProduct() {
+  //   this._router.navigate(['/catalog/prod/' + this.nextProduct.productId]);
+  // }
+  // goToPrevProduct() {
+  //   this._router.navigate(['/catalog/prod/' + this.prevProduct.productId]);
+  // }
 
   /**
    * add product to cart and update the number of products

@@ -9,7 +9,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class ProductsService {
 
-  url = 'http://18.197.19.50:3200/product';
+  url = 'http://18.222.40.189:3200/product';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

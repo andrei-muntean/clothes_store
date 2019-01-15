@@ -59,6 +59,7 @@ svg:hover {
     border: 1px solid #e4dfde;
     box-shadow: 1px 1px 6px 0px #e4dfde;
     text-align: center;
+    outline: #f72464;
 }
 .logo-text {
     padding-top: 3px;
@@ -76,6 +77,9 @@ svg:hover {
     padding-right: 10%;
     min-width: 350px;
 }
+ngb-carousel {
+    outline: none;
+}
 .products-carousel {
     min-width: 500px;
     min-height: 650px;
@@ -85,7 +89,7 @@ svg:hover {
 .carousel-img {
     left: 0;
     top: 0;
-    width: 100%;
+    width: auto;
     height: auto;
     max-width: 550px;
     max-height: 650px;

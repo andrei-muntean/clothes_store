@@ -1,3 +1,4 @@
+<!-- commented for now
 <div class="prev-arrow">
   <div class="interior-prev-arrow">
     <a class="anchor-class" (click)="goToPrevProduct()" ng-disabled="!prevProduct">
@@ -21,6 +22,7 @@
     </a>
   </div>
 </div>
+commented for now -->
 <nav aria-label="breadcrumb">
   <div class="row">
     <a class="navbar-brand" routerLink="/">
@@ -46,7 +48,7 @@
   <div class="col-md-6" [@carousel]="product">
     <ngb-carousel class="products-carousel">
       <ng-template ngbSlide *ngFor="let image of images">
-        <img class="carousel-img" src="https://s3.eu-central-1.amazonaws.com/{{image.content}}" alt="image.name">
+        <img class="carousel-img" src="https://s3.us-east-2.amazonaws.com/{{image.content}}" alt="image.name">
       </ng-template>
     </ngb-carousel>
     <div class="grid-view" [routerLink] = "['/catalog/', product.category.categoryId]">
@@ -78,16 +80,6 @@
         </li>
         <li class="list-group-item">
           <span class="span-item">
-            <h6>Available in Sizes</h6>
-            <div class="row">
-              <div class="col-sm-2 stock-col" *ngFor="let stock of stocks">
-                <h5>{{stock.size}}</h5>
-              </div>
-            </div>
-          </span>
-        </li>
-        <li class="list-group-item">
-          <span class="span-item">
             <h6>Description</h6>
             <h5 class="descr-line" *ngFor="let descr of description">{{descr}}</h5>
           </span>
@@ -96,12 +88,6 @@
           <span class="span-item">
             <h6>Care</h6>
             <h5 class="care-line" *ngFor="let c of care">{{c}}</h5>
-          </span>
-        </li>
-        <li class="list-group-item">
-          <span class="span-item">
-            <h6>Price</h6>
-            <h5 class="price-line">For price and ordering please use our contact page</h5>
           </span>
         </li>
       </ul>
