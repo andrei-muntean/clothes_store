@@ -22,8 +22,6 @@ export interface IProducttDefinition {
     stocks: IStock[];
     price: number;
     discount: number;
-    isOnPromotion: boolean;
-    promotionImage?: IImageFile[];
     isAvailableOnCommand: boolean;
     description: string[];
     care: string[];

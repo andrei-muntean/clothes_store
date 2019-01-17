@@ -14,61 +14,32 @@
     <div class="col">
       <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
         <div class="form-group">
-          <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <input type="number" class="form-control" id="price" [(ngModel)]="model.price" name="price" #price="ngModel" placeholder="$ Price">
-        </div>
-        <div class="form-group">
-          <input type="number" class="form-control" id="discount" [(ngModel)]="model.discount" name="discount" #discount="ngModel"
-            placeholder="Discount">
+          <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Name"
+            [disabled]="isLoading">
         </div>
         <div class="form-group">
           <label for="category-control-select">Category</label>
-          <select class="form-control" id="category-control-select" [(ngModel)]="model.category" name="category" #category="ngModel">
+          <select class="form-control" id="category-control-select" [(ngModel)]="model.category" name="category" #category="ngModel"
+            [disabled]="isLoading">
             <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
           </select>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="care" [(ngModel)]="model.care" name="care" #care="ngModel" placeholder="Care - Split by commas for multiple lines">
+          <input type="text" class="form-control" id="care" [(ngModel)]="model.care" name="care" #care="ngModel" placeholder="Care - Split by commas for multiple lines"
+            [disabled]="isLoading">
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description" #description="ngModel"
-            placeholder="Description - Split by commas for multiples lines">
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" id="size" [(ngModel)]="model.size" name="size" #size="ngModel" placeholder="Available Sizes - Split by commas for multiple Sizes">
-        </div>
-        <div class="form-group">
-          <div class="promo-image-container">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <input type="checkbox" aria-label="Checkbox for following text input" data-toggle="tooltip" data-placement="bottom" title="Enable/Disable Promotion Image"
-                    (change)="changeIsPromotionImage()">
-                </div>
-              </div>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="promotionUploadFile" (change)="onPromoFileUpload($event)" aria-describedby="promotionMainUploadFile"
-                  [disabled]="!isPromotionImage">
-                <label class="custom-file-label" for="promotionUploadFile">{{promoMainImageText}}</label>
-              </div>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="promotionUploadFile" (change)="onPromoFileUpload($event)" aria-describedby="promotionNewUploadFile"
-                  [disabled]="!isPromotionImage">
-                <label class="custom-file-label" for="promotionUploadFile">{{promoNewImageText}}</label>
-              </div>
-            </div>
-          </div>
+            placeholder="Description - Split by commas for multiples lines" [disabled]="isLoading">
         </div>
         <div>
-          <button class="btn btn-primary" style="width: 100%">Submit</button>
+          <button class="btn btn-primary" style="width: 100%" [disabled]="isLoading">Submit</button>
         </div>
       </form>
     </div>
     <div class="col upload-file-container">
       <div class="custom-file">
-        <input type="file" class="custom-file-input" id="fileUploader" (change)="onFileChanged($event)">
+        <input type="file" class="custom-file-input" id="fileUploader" (change)="onFileChanged($event)" [disabled]="isLoading">
         <label class="custom-file-label" for="customFile">{{lastImageName}}</label>
         <div class="row">
           <div class="col-sm-4 preview-images" *ngFor="let image of images">
@@ -81,3 +52,9 @@
       </div>
     </div>
   </div>
+  <div *ngIf="isLoading" class="d-flex justify-content-center loading">
+    <div class="spinner-border text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>

@@ -15,20 +15,13 @@ export class AddProductsComponent {
   categories: ICategory[] = [];
   images: IImageFile[] = [];
   lastImageName: string = 'Choose Images For This Product';
-  isPromotionImage: boolean = false;
-  promoImages: IImageFile[] = [];
-  promoMainImageText: string = 'Choose Image For Main Frame';
-  promoNewImageText: string = 'Choose Image For New Framet';
   submited = false;
+  isLoading = false;
 
   constructor(private _productService: ProductsService, categoryService: CategoriesService) {
     categoryService.getCategories().subscribe(c => {
       this.categories = c;
     });
-  }
-
-  changeIsPromotionImage() {
-    this.isPromotionImage = !this.isPromotionImage;
   }
 
   onFileChanged(event): void {
@@ -57,35 +50,6 @@ export class AddProductsComponent {
     }
   }
 
-  onPromoFileUpload(event) {
-    if (event.target.files && event.target.files[0]) {
-      // image to laod
-      let image: IImageFile = {};
-      const file = event.target.files[0];
-      image.name = file.name;
-      image.format = file.type.split('/')[1];
-      image.isBase64Encoded = true;
-      const reader = new FileReader();
-      reader.onload = e => {
-        image.content = reader.result;
-        this.promoImages.push(image);
-      }
-      // update promo file chooser
-      if (this.promoImages.length > 1) {
-        this.promoNewImageText = image.name;
-      }
-      else {
-        this.promoMainImageText = image.name;
-      }
-      // read as url
-      reader.readAsDataURL(file);
-    }
-  }
-
-  removePromoImage() {
-    this.promoImages = undefined
-  }
-
   getBase64(text: string): string {
     return text.split(',')[1];
   }
@@ -107,45 +71,40 @@ export class AddProductsComponent {
   }
 
   onSubmit(f: NgForm) {
+    this.isLoading = true;
     this.submited = true;
     // parse model
-    // -- stocks
-    let stocks: IStock[] = [];
-    let sizes: string[] = (<string>this.model.size).split(',')
-    sizes.forEach(size => stocks.push({
-      size: size.replace(/ /g, ''), // remove white space
-      count: 1
-    }));
     // -- images
-    this.images.forEach(image => image.content = this.getBase64(image.content))
-    if (this.promoImages) {
-      this.promoImages.forEach(promoImage => promoImage.content = this.getBase64(promoImage.content));
-    }
+    this.images.forEach(image => image.content = this.getBase64(image.content));
+    // -- description
+    let descr = this.model.description;
+    // -- care
+    let care = this.model.care;
     // create product
     let product: IProducttDefinition = {
       categoryId: this.model.category.categoryId,
       name: this.model.name,
       images: this.images,
-      stocks: stocks,
-      price: this.model.price,
-      discount: this.model.discount,
-      isOnPromotion: this.isPromotionImage,
-      promotionImage: this.isPromotionImage ? this.promoImages : null,
+      stocks: [],
+      discount: 0,
+      price: 0,
       isAvailableOnCommand: true,
-      description: (<string>this.model.description).split(','),
-      care: (<string>this.model.care).split(',')
+      description: descr ? (<string>descr).split(',') : [],
+      care: care ? (<string>care).split(',') : []
     }
     // post to server
     this._productService.addProduct(product).subscribe(responseData => {
-      console.log(responseData);
+      if (responseData[0].status === 200) {
+        this.isLoading = false;
+        // clear page
+        this.images.splice(0, this.images.length);
+        this.lastImageName = '';
+        f.resetForm();
+      }
+      this.isLoading = false;
+      // display succesful or error
+    }, err => {
+      this.isLoading = false;
     });
-    // clear page
-    this.images.splice(0, this.images.length);
-    this.lastImageName = '';
-    this.promoImages.splice(0, this.promoImages.length);
-    this.promoMainImageText = '';
-    this.promoNewImageText = '';
-    this.isPromotionImage = false;
-    f.resetForm();
   }
 }

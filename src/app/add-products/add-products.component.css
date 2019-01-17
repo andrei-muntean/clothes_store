@@ -58,6 +58,10 @@ a:hover {
     color: #f72464 !important;
     cursor: pointer;
 }
+.loading {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
 * {
     color: #222222;
     cursor: default;

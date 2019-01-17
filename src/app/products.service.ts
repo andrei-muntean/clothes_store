@@ -1,7 +1,8 @@
 import { IProduct, IProducttDefinition } from './models';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, catchError } from '../../node_modules/rxjs/operators';
 
 
 @Injectable({
@@ -62,8 +63,14 @@ export class ProductsService {
   }
 
   addProduct(product: IProducttDefinition): Observable<any> {
-    console.log(product);
-    return this._http.post(this.url, JSON.stringify(product), this.httpOptions);
+    return this._http
+      .post(this.url, JSON.stringify(product), { observe: 'response' })
+      .pipe(
+        map((response: any) => {
+          return [{ status: response.status, json: response }];
+        }),
+        catchError(error => of([{ status: error.status, json: error }]))
+      );
   }
   /**
    * Add a new product in cart
