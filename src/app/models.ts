@@ -1,5 +1,5 @@
 // Non definion means that those are the models you will receive from the server
-export interface IProduct {
+export interface IProduct extends IEditable {
     productId?: number;
 	category: ICategory;
 	sex: string;	
@@ -7,7 +7,8 @@ export interface IProduct {
     images: IImageFile[];
     stocks: IStock[];
     discount: number;
-    isAvailableOnCommand?: boolean;
+	isAvailableOnCommand?: boolean;
+	isFavourite: boolean;
     description: string[];
     care: string[];
 	price: number;
@@ -23,6 +24,7 @@ export interface IProducttDefinition {
     price: number;
     discount: number;
     isAvailableOnCommand: boolean;
+	isFavourite: boolean;
     description: string[];
     care: string[];
 }
@@ -38,6 +40,7 @@ export interface IImageFile {
 	content?: any;
 	format?: string; 
 	isBase64Encoded?: boolean;
+	hasThumbnail?: boolean;
 }
 
 export interface IStock {
@@ -125,4 +128,8 @@ export interface IPromotion {
 	price: number;
 	discount: number;
 	image: IImageFile[];
+}
+
+export interface IEditable {
+	editable?: boolean;
 }

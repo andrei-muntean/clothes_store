@@ -1,6 +1,6 @@
 import { IProduct, IProducttDefinition } from './models';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { map, catchError } from '../../node_modules/rxjs/operators';
 
@@ -10,19 +10,10 @@ import { map, catchError } from '../../node_modules/rxjs/operators';
 })
 export class ProductsService {
 
-  url = 'http://18.222.40.189:3200/product';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-    })
-  };
+  url = 'https://api.ancamorar.com/product';
   // products
   allProducts: IProduct[];
-  private products = new BehaviorSubject<IProduct[]>(undefined);
-  productsObs = this.products.asObservable();
   // this is used for cart icon to update its current value
-  private productsNr = new BehaviorSubject<number>(0);
-  productsNrObs = this.productsNr.asObservable();
 
   constructor(private _http: HttpClient) { }
 
@@ -36,14 +27,16 @@ export class ProductsService {
   /**
    * Get specified number of products per page
    * @param page 
-   * @param nrProducts 
+   * @param nrProducts
+   * @param categoryId 
    */
-  getProducts(page: number, nrProducts: number, categoryId: number) {
+  getProducts(page: number, nrProducts: number, categoryId?: number) {
     return this._http.get(this.url, {
       params: {
         offset: page.toString(),
         limit: nrProducts.toString(),
-        c: categoryId.toString()
+        c: categoryId !== -1 && categoryId ? categoryId.toString() : undefined,
+        favourites: categoryId === -1 ? 'true' : undefined
       }
     });
   }
@@ -56,12 +49,18 @@ export class ProductsService {
     let prodUrl = this.url + '/' + productId;
     return this._http.get(prodUrl);
   }
-
+  /**
+   * Get the 
+   * @param productId 
+   */
   getNavigationProduct(productId: number): Observable<any> {
     let prodUrl = this.url + '/' + productId + '/navigation';
     return this._http.get(prodUrl);
   }
-
+  /**
+   * Add this product to database
+   * @param product 
+   */
   addProduct(product: IProducttDefinition): Observable<any> {
     return this._http
       .post(this.url, JSON.stringify(product), { observe: 'response' })
@@ -73,38 +72,37 @@ export class ProductsService {
       );
   }
   /**
-   * Add a new product in cart
-   * @param product - product to add in cart
+   * Remove a product from the database
+   * @param productId 
    */
-  addProductToCart(product: IProduct): void {
-    let newProducts = this.products.getValue();
-    if (!newProducts) {
-      newProducts = [];
-    }
-    newProducts.push(product);
-    this.products.next(newProducts);
+  removeProduct(productId: number): Observable<any> {
+    return this._http
+      .delete(this.url + '/' + productId, { observe: 'response' })
+      .pipe(
+        map((response: any) => {
+          return [{ status: response.status, json: response }];
+        }),
+        catchError(error => of([{ status: error.status, json: error }]))
+      );
   }
-
   /**
-   * Remove given product from cart
-   * @param product - product to remove
+   * Edit specified product
+   * @param product 
    */
-  removeProductFromCart(product: IProduct) {
-    let newProducts = this.products.getValue();
-    let index = newProducts.indexOf(product);
-    newProducts.splice(index, 1);
-    this.products.next(newProducts);
+  editProduct(productId: number, product: IProducttDefinition) {
+    return this._http.put(this.url + '/' + productId, JSON.stringify(product), { observe: 'response' })
+      .pipe(
+        map((response: any) => {
+          return [{ status: response.status, json: response }];
+        }),
+        catchError(error => of([{ status: error.status, json: error }]))
+      );
   }
-
   /**
-   * Update the current number of products in cart
-   * @param increase - true if the current number should be increased, false otherwise
+   * 
+   * @param product 
+   * @param next 
    */
-  updateNrProds(increase: boolean) {
-    let newProductNr = increase ? this.productsNr.getValue() + 1 : this.productsNr.getValue() - 1;
-    this.productsNr.next(newProductNr);
-  }
-
   slideToNextProduct(product: IProduct, next: boolean): IProduct {
     if (!this.allProducts) {
       // products
@@ -124,5 +122,14 @@ export class ProductsService {
       }
     );
     return null;
+  }
+
+  getProductCount(category: number): Observable<any> {
+    return this._http.get(this.url + '/count', {
+      params: {
+        c: category !== -1 ? category.toString() : undefined,
+        favourites: category === -1 ? 'true' : undefined
+      }
+    });
   }
 }

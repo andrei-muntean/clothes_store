@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ContactService {
 
-  url = 'http://18.222.40.189:3200/contact';
+  url = 'https://api.ancamorar.com/contact';
   // Headers?
   httpOptions = {
     headers: new HttpHeaders({

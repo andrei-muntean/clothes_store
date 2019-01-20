@@ -1,0 +1,69 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Products</li>
+      </ol>
+    </div>
+  </nav>
+  <div class="adding-panel row justify-content-end">
+    <div class="col-md-auto">
+      <button class="btn btn-primary border" routerLink="/manageProducts/addproducts">Add New Product</button>
+    </div>
+    <div class="col-md-auto">
+      <button class="btn btn-primary border" disabled="true">Add New Promotion</button>
+    </div>
+  </div>
+  <div class="form-container border" *ngFor="let product of prodValues">
+    <ngb-accordion #acc="ngbAccordion">
+      <ngb-panel id="toggle-1" [title]="product.name">
+        <ng-template ngbPanelContent>
+          <form class="form-row align-items-center" name="form" #f="ngForm" novalidate>
+            <div class="form-group" *ngFor="let image of product.images">
+              <!-- <img *ngIf="product !== undefined" [src]="https://s3.us-east-2.amazonaws.com/{{product.image[0].content}}"> -->
+            </div>
+            <div class="form-group col-sm">
+              <label for="product-name-lbl">Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="product.name" name="name" #name="ngModel" [disabled]="!product.editable">
+            </div>
+            <div class="form-group col-sm">
+              <label for="product-category-lbl">Category</label>
+              <select class="form-control" id="category-control-select" [(ngModel)]="product.category" [value]="product.category.name"
+                name="category" #category="ngModel" [disabled]="!product.editable">
+                <option *ngFor="let c of categories" [ngValue]="c" [selected]="c === product.category">{{c.name}}</option>
+              </select>
+            </div>
+            <div class="form-group col-sm">
+              <label for="product-care-lbl">Care</label>
+              <input type="text" class="form-control" id="care" [(ngModel)]="product.care" name="care" #care="ngModel" [disabled]="!product.editable">
+            </div>
+            <div class="form-group col-sm">
+              <label for="product-desc-lbl">Description</label>
+              <input type="text" class="form-control" id="description" [(ngModel)]="product.description" name="description" #description="ngModel"
+                [disabled]="!product.editable">
+            </div>
+            <div class="form-group col-sm">
+              <div class="form-check">
+                <input class="form-new-input" type="checkbox" id="newCheck" [(ngModel)]="product.isFavourite" name="isFavourite" #isFavourite="ngModel"
+                  [disabled]="!product.editable">
+                <label class="form-new-label" for="newCheck">
+                  Enable For New Collection
+                </label>
+              </div>
+            </div>
+            <div class="button-panel col-sm">
+              <button *ngIf="product.editable" class="btn btn-success top" (click)="saveProduct(product, f)">Save</button>
+              <button *ngIf="!product.editable" class="btn btn-primary top" (click)="editProduct(product)">Edit</button>
+              <button class="btn btn-danger bot" (click)="removeProduct(product.productId)">Remove</button>
+            </div>
+          </form>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+  <ngb-pagination *ngIf="prodValues.length > 0" class="d-flex justify-content-end" [collectionSize]='collectionSize' [(page)]='page'
+    (pageChange)='pageChange($event)' [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+</div>

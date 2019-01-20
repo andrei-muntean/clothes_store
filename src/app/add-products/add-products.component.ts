@@ -3,6 +3,7 @@ import { ProductsService } from '../products.service';
 import { IImageFile, IStock, IProducttDefinition, ICategory } from '../models';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Ng2ImgMaxService } from '../../../node_modules/ng2-img-max';
 
 @Component({
   selector: 'app-add-products',
@@ -18,7 +19,9 @@ export class AddProductsComponent {
   submited = false;
   isLoading = false;
 
-  constructor(private _productService: ProductsService, categoryService: CategoriesService) {
+  constructor(private _productService: ProductsService,
+    categoryService: CategoriesService,
+    private ng2ImgMaxService: Ng2ImgMaxService) {
     categoryService.getCategories().subscribe(c => {
       this.categories = c;
     });
@@ -29,17 +32,28 @@ export class AddProductsComponent {
       // image to laod
       let image: IImageFile = {};
       const file = event.target.files[0];
-      image.name = file.name;
-      image.format = file.type.split('/')[1];
-      image.isBase64Encoded = true;
-      const reader = new FileReader();
-      reader.onload = e => {
-        image.content = reader.result;
-        this.images.push(image);
-      }
-      reader.readAsDataURL(file);
-      // update file uploader text
-      this.lastImageName = image.name;
+      console.log(file.size);
+      // start loading
+      this.isLoading = true;
+      // crompress file
+      this.ng2ImgMaxService.compressImage(file, 0.5).subscribe(result => {
+        // stop loading
+        this.isLoading = false;
+        console.log(result);
+        // set image
+        image.name = result.name;
+        image.format = result.type.split('/')[1];
+        image.isBase64Encoded = true;
+        image.hasThumbnail = true;
+        const reader = new FileReader();
+        reader.onload = e => {
+          image.content = reader.result;
+          this.images.push(image);
+        }
+        reader.readAsDataURL(result);
+        // update file uploader text
+        this.lastImageName = image.name;
+      })
     }
   }
 
@@ -89,22 +103,30 @@ export class AddProductsComponent {
       discount: 0,
       price: 0,
       isAvailableOnCommand: true,
+      isFavourite: false,//this.model.isFavourite,
       description: descr ? (<string>descr).split(',') : [],
       care: care ? (<string>care).split(',') : []
     }
     // post to server
+    console.log(product);
     this._productService.addProduct(product).subscribe(responseData => {
       if (responseData[0].status === 200) {
         this.isLoading = false;
-        // clear page
-        this.images.splice(0, this.images.length);
-        this.lastImageName = '';
-        f.resetForm();
       }
       this.isLoading = false;
+      this.clearForm(f);
       // display succesful or error
     }, err => {
       this.isLoading = false;
+      this.clearForm(f);
     });
+  }
+
+  clearForm(f: NgForm) {
+    // clear page
+    this.images.splice(0, this.images.length);
+    this.images = [];
+    this.lastImageName = '';
+    f.resetForm();
   }
 }

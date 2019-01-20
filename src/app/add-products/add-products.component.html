@@ -6,6 +6,9 @@
         <li class="breadcrumb-item">
           <a routerLink="/">Home</a>
         </li>
+        <li class="breadcrumb-item">
+          <a routerLink="/manageProducts">Manage Products</a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Add Products</li>
       </ol>
     </div>
@@ -32,6 +35,15 @@
           <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description" #description="ngModel"
             placeholder="Description - Split by commas for multiples lines" [disabled]="isLoading">
         </div>
+        <!-- <div class="form-group">
+          <div class="form-check">
+            <input class="form-new-input" type="checkbox" id="newCheck" [(ngModel)]="product.isFavourite" name="isFavourite" #isFavourite="ngModel"
+              [disabled]="isLoading">
+            <label class="form-new-label" for="newCheck">
+              Enable For New Collection
+            </label>
+          </div>
+        </div> -->
         <div>
           <button class="btn btn-primary" style="width: 100%" [disabled]="isLoading">Submit</button>
         </div>

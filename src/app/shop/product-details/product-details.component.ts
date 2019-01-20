@@ -13,27 +13,27 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
   animations: [
     trigger('carousel', [
       transition('* => *', [
-        query('ngb-carousel',style({ transform: 'translateX(-100%)'})),
+        query('ngb-carousel', style({ transform: 'translateX(-100%)' })),
         query('ngb-carousel',
           stagger('600ms', [
-            animate('900ms', style({ transform: 'translateX(0)'}))
-        ]))
+            animate('900ms', style({ transform: 'translateX(0)' }))
+          ]))
       ])
     ]),
     trigger('product', [
       transition('* => *', [
-        query('ul',style({ transform: 'translateY(100%)'})),
+        query('ul', style({ transform: 'translateY(100%)' })),
         query('ul',
           stagger('600ms', [
-            animate('900ms', style({ transform: 'translateY(0)'}))
-        ]))
+            animate('900ms', style({ transform: 'translateY(0)' }))
+          ]))
       ])
     ])
   ]
 })
 export class ProductDetailsComponent implements OnInit {
-  // nextProduct: IProduct;
-  // prevProduct: IProduct;
+  nextProduct: IProduct;
+  prevProduct: IProduct;
   product: IProduct;
   images: IImageFile[];
   description: string[];
@@ -57,8 +57,8 @@ export class ProductDetailsComponent implements OnInit {
       params => {
         const id = +params['id'];
         this._productService.getNavigationProduct(id).subscribe((data: any) => {
-          // this.prevProduct = data['previous'];
-          // this.nextProduct = data['next'];
+          this.prevProduct = data['previous'];
+          this.nextProduct = data['next'];
           this.product = data['current'];
           this.images = this.product.images;
           this.description = this.product.description;
@@ -67,18 +67,10 @@ export class ProductDetailsComponent implements OnInit {
       });
   }
 
-  // goToNextProduct() {
-  //   this._router.navigate(['/catalog/prod/' + this.nextProduct.productId]);
-  // }
-  // goToPrevProduct() {
-  //   this._router.navigate(['/catalog/prod/' + this.prevProduct.productId]);
-  // }
-
-  /**
-   * add product to cart and update the number of products
-   */
-  addProdToCart() {
-    this._productService.addProductToCart(this.product);
-    this._productService.updateNrProds(true);
+  goToNextProduct() {
+    this._router.navigate(['/catalog/prod/' + this.nextProduct.productId]);
+  }
+  goToPrevProduct() {
+    this._router.navigate(['/catalog/prod/' + this.prevProduct.productId]);
   }
 }

@@ -19,7 +19,7 @@ export class ShopComponent implements OnInit {
   collectionSize = 10;
   page = 1;
 
-  constructor(private _productService: ProductsService, 
+  constructor(private _productService: ProductsService,
     private _activeRoute: ActivatedRoute,
     private _categoryService: CategoriesService) { }
 
@@ -27,20 +27,23 @@ export class ShopComponent implements OnInit {
     this._activeRoute.params.subscribe(
       params => {
         this._categoryId = +params['categoryId'];
+        // total products
+        this._productService.getProductCount(this._categoryId).subscribe((count: number) => {
+          // number of pages
+          this.collectionSize = (count / 20) * 10;
+        });
       });
     // de test
-    this._categoryService.getCategories().subscribe((data: ICategory[]) => {
-      this.category = data.find(item => item.categoryId === this._categoryId);
-    });
-    // total products
-    this._productService.getAll().subscribe((data: IProduct[]) => {
-      // number of pages
-      this.collectionSize = (data.length / 20) * 10;
-    });
+    if (this._categoryId !== -1) {
+      this._categoryService.getCategories().subscribe((data: ICategory[]) => {
+        this.category = data.find(item => item.categoryId === this._categoryId);
+      });
+    } else {
+      this.category = {name: 'New', categoryId: -1};
+    }
     this._productService.getProducts(--this.page, 20, this._categoryId)
       .subscribe(
         (data: IProduct[]) => {
-          console.log(data);
           this.products = data;
         }
       );
