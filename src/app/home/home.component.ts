@@ -15,7 +15,6 @@ export class HomeComponent{
   constructor(homeService: HomeService) {
     // load images
     homeService.getPromotionItems().subscribe((data: IImageFile[]) => { 
-      console.log(data);
       this.homeImage = "https://s3.us-east-2.amazonaws.com/" + data[0].content;
       this.newImage = "https://s3.us-east-2.amazonaws.com/" + data[1].content;
     });

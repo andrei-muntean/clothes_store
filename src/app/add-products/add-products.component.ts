@@ -32,14 +32,12 @@ export class AddProductsComponent {
       // image to laod
       let image: IImageFile = {};
       const file = event.target.files[0];
-      console.log(file.size);
       // start loading
       this.isLoading = true;
       // crompress file
       this.ng2ImgMaxService.compressImage(file, 0.5).subscribe(result => {
         // stop loading
         this.isLoading = false;
-        console.log(result);
         // set image
         image.name = result.name;
         image.format = result.type.split('/')[1];
@@ -103,12 +101,11 @@ export class AddProductsComponent {
       discount: 0,
       price: 0,
       isAvailableOnCommand: true,
-      isFavourite: false,//this.model.isFavourite,
+      isFavourite: this.model.isFavourite ? this.model.isFavourite : false,
       description: descr ? (<string>descr).split(',') : [],
       care: care ? (<string>care).split(',') : []
     }
     // post to server
-    console.log(product);
     this._productService.addProduct(product).subscribe(responseData => {
       if (responseData[0].status === 200) {
         this.isLoading = false;

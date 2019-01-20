@@ -19,7 +19,6 @@ export class ContactService {
 
   contact(model: any) {
     let data = JSON.stringify(model);// json of model to send to server
-    console.log(data);
     return this._http.post(this.url, data, this.httpOptions);
   }
 }

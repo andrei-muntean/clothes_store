@@ -53,7 +53,6 @@ export class ShopComponent implements OnInit {
     this._productService.getProducts(--page, 20, this._categoryId)
       .subscribe(
         (data: IProduct[]) => {
-          console.log(data);
           this.products = data;
         }
       );

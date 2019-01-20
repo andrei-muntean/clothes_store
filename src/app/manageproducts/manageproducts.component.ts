@@ -30,7 +30,6 @@ export class ManageproductsComponent implements OnInit {
     this._productService.getProducts(--this.page, 20)
       .subscribe(
         (data: IProduct[]) => {
-          console.log(data);
           data.forEach(element => {
             this.products.set(element.productId, element);
           });
@@ -51,7 +50,6 @@ export class ManageproductsComponent implements OnInit {
     this._productService.getProducts(--page, 20)
       .subscribe(
         (data: IProduct[]) => {
-          console.log(data);
           data.forEach(element => {
             this.products.set(element.productId, element);
           });
@@ -78,7 +76,6 @@ export class ManageproductsComponent implements OnInit {
   saveProduct(product: IProduct, form: NgForm) {
     this._productService.editProduct(product.productId, this.correctModel(product)).subscribe(
       data => {
-        console.log(product);
         // switch state
         product.editable = false
       }
@@ -89,6 +86,8 @@ export class ManageproductsComponent implements OnInit {
    * @param product 
    */
   correctModel(product: IProduct): IProducttDefinition {
+    let descr: string[] = [];
+    let car: string[] = [];
     return {
       categoryId: product.category.categoryId,
       name: product.name,
@@ -98,8 +97,8 @@ export class ManageproductsComponent implements OnInit {
       discount: 0,
       isAvailableOnCommand: true,
       isFavourite: product.isFavourite,
-      description: product.description,
-      care: product.care
+      description: descr.concat(product.description),
+      care: car.concat(product.care)
     };
   }
 
