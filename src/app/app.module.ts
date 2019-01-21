@@ -22,7 +22,7 @@ import { Ng2ImgMaxModule } from 'ng2-img-max';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalog/:categoryId', component: ShopComponent },
-  { path: 'catalog/prod/:id', component: ProductDetailsComponent },
+  { path: 'catalog/:categoryId/:id', component: ProductDetailsComponent },
   // { path: 'video', component: VideosComponent },
   // { path: 'sizing', component: SizingComponent },
   // { path: 'contact', component: ContactComponent },

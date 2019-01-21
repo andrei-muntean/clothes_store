@@ -1,6 +1,6 @@
 <div class="content-pane">
     <div class="shop-tittle">
-        <h1>{{category.name}}</h1>
+        <h1 *ngIf="category">{{category.name}}</h1>
         <h6>Anca Morar</h6>
     </div>
     <nav aria-label="breadcrumb">
@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item">
                     <a routerLink="/">Home</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">{{category.name}}</li>
+                <li class="breadcrumb-item active" aria-current="page" *ngIf="category">{{category.name}}</li>
             </ol>
         </div>
     </nav>

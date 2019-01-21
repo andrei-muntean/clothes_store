@@ -1,6 +1,6 @@
-import { IImageFile, ICategory } from '../../models';
+import { IImageFile } from '../../models';
 import { ProductsService } from '../../products.service';
-import { IStock, IProduct } from '../../models';
+import { IProduct } from '../../models';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -38,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
   images: IImageFile[];
   description: string[];
   care: string[];
+  categoryId = 0;
 
   constructor(
     private _productService: ProductsService,
@@ -56,7 +57,8 @@ export class ProductDetailsComponent implements OnInit {
     this._activeRoute.params.subscribe(
       params => {
         const id = +params['id'];
-        this._productService.getNavigationProduct(id).subscribe((data: any) => {
+        this.categoryId = +params['categoryId'];
+        this._productService.getNavigationProduct(id, this.categoryId).subscribe((data: any) => {
           this.prevProduct = data['previous'];
           this.nextProduct = data['next'];
           this.product = data['current'];
@@ -68,9 +70,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   goToNextProduct() {
-    this._router.navigate(['/catalog/prod/' + this.nextProduct.productId]);
+    this._router.navigate(['/catalog/'+ this.categoryId + '/' + this.nextProduct.productId]);
   }
   goToPrevProduct() {
-    this._router.navigate(['/catalog/prod/' + this.prevProduct.productId]);
+    this._router.navigate(['/catalog/'+ this.categoryId + '/' + this.prevProduct.productId]);
   }
 }

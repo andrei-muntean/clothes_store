@@ -18,6 +18,7 @@ export class ShopComponent implements OnInit {
   products: IProduct[] = [];
   collectionSize = 10;
   page = 1;
+  firstTime = true;
 
   constructor(private _productService: ProductsService,
     private _activeRoute: ActivatedRoute,
@@ -41,7 +42,7 @@ export class ShopComponent implements OnInit {
     } else {
       this.category = {name: 'New', categoryId: -1};
     }
-    this._productService.getProducts(--this.page, 20, this._categoryId)
+    this._productService.getProducts(this.page - 1, 20, this._categoryId)
       .subscribe(
         (data: IProduct[]) => {
           this.products = data;
@@ -50,7 +51,11 @@ export class ShopComponent implements OnInit {
   }
 
   pageChange(page): void {
-    this._productService.getProducts(--page, 20, this._categoryId)
+    if (this.firstTime) {
+      this.firstTime = false;
+      return;
+    }
+    this._productService.getProducts(page - 1, 20, this._categoryId)
       .subscribe(
         (data: IProduct[]) => {
           this.products = data;

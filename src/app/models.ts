@@ -37,7 +37,7 @@ export interface ICategory {
 
 export interface IImageFile {
     name?: string;
-	content?: any;
+	content?: string;
 	format?: string; 
 	isBase64Encoded?: boolean;
 	hasThumbnail?: boolean;

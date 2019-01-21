@@ -1,7 +1,7 @@
 import { IProduct, IProducttDefinition } from './models';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { map, catchError } from '../../node_modules/rxjs/operators';
 
 
@@ -31,14 +31,18 @@ export class ProductsService {
    * @param categoryId 
    */
   getProducts(page: number, nrProducts: number, categoryId?: number) {
-    return this._http.get(this.url, {
-      params: {
-        offset: page.toString(),
-        limit: nrProducts.toString(),
-        c: categoryId !== -1 && categoryId ? categoryId.toString() : undefined,
-        favourites: categoryId === -1 ? 'true' : undefined
+    let params: HttpParams = new HttpParams()
+      .set('offset', page.toString())
+      .set('limit', nrProducts.toString());
+
+    if (categoryId) {
+      if (categoryId !== -1) {
+        params = params.set('c', categoryId.toString());
+      } else {
+        params = params.set('favourite', 'true');
       }
-    });
+    }
+    return this._http.get(this.url, { params: params });
   }
 
   /**
@@ -53,9 +57,16 @@ export class ProductsService {
    * Get the 
    * @param productId 
    */
-  getNavigationProduct(productId: number): Observable<any> {
+  getNavigationProduct(productId: number, categoryId?: number): Observable<any> {
+    let params: HttpParams = new HttpParams();
+    if (categoryId !== -1) {
+      params = params.set('c', categoryId.toString());
+    } 
+    else {
+      params = params.set('favourite', 'true');
+    }
     let prodUrl = this.url + '/' + productId + '/navigation';
-    return this._http.get(prodUrl);
+    return this._http.get(prodUrl, { params: params });
   }
   /**
    * Add this product to database
@@ -99,37 +110,16 @@ export class ProductsService {
       );
   }
   /**
-   * 
-   * @param product 
-   * @param next 
+   * Get the total number of products for the specified category
+   * @param category 
    */
-  slideToNextProduct(product: IProduct, next: boolean): IProduct {
-    if (!this.allProducts) {
-      // products
-      this.getAll().subscribe((data: IProduct[]) => {
-        // request products
-        this.allProducts = data;
-      });
-    }
-    this.allProducts.forEach(
-      (item, index) => {
-        if (item === product) {
-          let prodIndex = next ? index + 1 : index - 1;
-          prodIndex = prodIndex === 0 ? this.allProducts.length - 1 : prodIndex;
-          prodIndex = prodIndex === this.allProducts.length ? 1 : prodIndex;
-          return this.allProducts[prodIndex];
-        }
-      }
-    );
-    return null;
-  }
-
   getProductCount(category: number): Observable<any> {
-    return this._http.get(this.url + '/count', {
-      params: {
-        c: category !== -1 ? category.toString() : undefined,
-        favourites: category === -1 ? 'true' : undefined
-      }
-    });
+    let params: HttpParams = new HttpParams();
+    if (category !== -1) {
+      params = params.set('c', category.toString());
+    } else {
+      params = params.set('favourite', 'true');
+    }
+    return this._http.get(this.url + '/count', { params: params });
   }
 }
