@@ -5,13 +5,14 @@
 }
 .inner {
     position: relative;
-    padding-top: 30px;
+    padding-top: 70px;
 }
 img {
     left: 0;
     top: 0;
     width: 100%;
     height: auto;
+    max-width: 493px;
 }
 .info-container {
     position: fixed;
@@ -42,6 +43,7 @@ h4 {
 }
 .collection-container {
     padding-top: 5px;
+    margin-left: 50px;
     position: relative;
     width: 100%;
 }
@@ -54,5 +56,40 @@ a {
     color: black;
 }
 a:hover {
+    cursor: pointer;
     color: #b6b5b5;
+}
+.nav-container {
+    position: fixed;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    right: 25px;
+    bottom: 5px;
+    z-index: 4;
+}
+@media screen and (max-width: 993px) {
+    .whats-new-container {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 576px) and (max-width: 320px) {
+    .info-text {
+        width: 200px;
+        transform: rotate(0deg);
+    }
+    .info-container {
+        left: 20px;
+        text-align: center;
+    }
+    h4 {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 825px) and (max-width: 450px) {
+    .info-container {
+        bottom: 80px;
+    }
 }

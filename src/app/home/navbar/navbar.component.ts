@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  // cartQty: number;
   categories: ICategory[] = [];
+  collapsed = true;
 
   constructor(categoryService: CategoriesService) {
     // load categories
@@ -19,8 +19,9 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-    // this._productService.productsNrObs.subscribe( newCartQty => this.cartQty = newCartQty);
-    // this._productService.productsObs.subscribe( newProducts => this.products = newProducts);
+  ngOnInit() { }
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 }

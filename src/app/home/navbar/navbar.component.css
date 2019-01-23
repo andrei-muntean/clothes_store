@@ -18,3 +18,7 @@ nav {
     padding-right: 10px;
     outline: none !important;
 }
+img {
+    width: 70px;
+    height: 70px;
+}

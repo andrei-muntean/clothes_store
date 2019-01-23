@@ -1,19 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <a class="navbar-brand" routerLink="/">
-    <img src="assets/images/logo.png" width="70" height="70" alt="Anca Morar Logo">
+    <img src="assets/images/logo.png" alt="Anca Morar Logo">
   </a>
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/catalog/', -1]">New</a>
-    </li>
-    <li class="nav-item" *ngFor='let category of categories'>
-      <a class="nav-link" [routerLink]="['/catalog/', category.categoryId]">{{category.name}}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/aboutMe">About Me</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="https://www.etsy.com/shop/AncaLMorar">Shop</a>
-    </li>
-  </ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/catalog/', -1]">New</a>
+      </li>
+      <li class="nav-item" *ngFor='let category of categories'>
+        <a class="nav-link" [routerLink]="['/catalog/', category.categoryId]">{{category.name}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/aboutMe">About Me</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.etsy.com/shop/AncaLMorar">Shop</a>
+      </li>
+    </ul>
+  </div>
 </nav>

@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    margin-top: 20px;
 }
 img {
     left: 0;
@@ -51,18 +52,4 @@ img {
     bottom: -20px;
     right: -20px;
     z-index: 0;
-}
-.nav-container {
-    position: fixed;
-    left: 70%;
-    bottom: 25px;
-    width: 100%;
-    z-index: 4;
-}
-a {
-    color: black;
-}
-a:hover {
-    cursor: pointer;
-    color: #b6b5b5;
 }
