@@ -83,13 +83,25 @@ a:hover {
         left: 20px;
         text-align: center;
     }
+    .collection-container {
+        margin-left: 0px;
+    }
     h4 {
         display: none;
     }
 }
 
 @media screen and (max-height: 825px) and (max-width: 450px) {
+    .collection-container {
+        margin-left: 0px;
+    }
     .info-container {
         bottom: 80px;
+    }
+}
+@media screen and (min-width: 2100px) {
+    img {
+        width: 100%;
+        height: auto;
     }
 }
