@@ -1,4 +1,4 @@
-import { IImageFile } from './../../models';
+import { IImageFile, ICategory } from './../../models';
 import { IProduct } from '../../models';
 import { Component, Input } from '@angular/core';
 
@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 export class ProductCardComponent {
 
   @Input('product') product: IProduct;
+  @Input('category') category: ICategory;
 
   _image: string = '';
 

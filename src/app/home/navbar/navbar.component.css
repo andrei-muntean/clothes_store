@@ -22,16 +22,24 @@ img {
     width: 70px;
     height: 70px;
 }
+.navbar-toggler {
+    outline: none;
+    border: none;
+}
+/* mobiles */
 @media screen and (max-height: 825px) and (max-width: 450px) {
     img {
         width: 45px;
         height: 45px;
     }
-    .navbar-brand {
-        padding-left: 10px;
-        padding-right: 10px;
+    nav {
+        padding-top: 28px;
+        margin-bottom: 0px;
     }
-    .navbar-toggler {
-        margin-right: 15px;
+    .navbar-brand {
+        display: none;
+    }
+    .nav-link {
+        margin-left: 15px !important;
     }
 }

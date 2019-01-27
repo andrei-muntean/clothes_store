@@ -146,3 +146,47 @@ a:hover {
 h5, h6 {
     cursor: default;
 }
+/* phones */
+@media screen and (max-height: 576px) and (max-width: 320px) {
+    .carousel-img {
+        width: 100%;
+        height: auto;
+    }
+    .container {
+        padding-top: 10%;
+        padding-left: 50px;
+        padding-right: 0px;
+        min-width: 0;
+        text-align: left;
+    }
+    .prev-arrow, .next-arrow {
+        display: none;
+    }
+}
+/* phones S */
+@media screen and (max-height: 825px) and (max-width: 450px) {
+    .logo-brand {
+        display: none;
+    }
+    .products-carousel {
+        min-width: 0;
+        min-height: 0;
+    }
+    .carousel-img {
+        width: 100%;
+        height: auto;
+    }
+    .container {
+        padding-top: 5px;
+        padding-left: 50px;
+        min-width: 0;
+        text-align: left;
+    }
+    .prev-arrow, .next-arrow {
+        display: none;
+    }
+}
+/* big screens */
+@media screen and (min-width: 2100px) {
+
+}

@@ -4,7 +4,7 @@ import { IProduct } from '../../models';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-product-details',

@@ -43,7 +43,6 @@ h4 {
 }
 .collection-container {
     padding-top: 5px;
-    margin-left: 50px;
     position: relative;
     width: 100%;
 }
@@ -68,12 +67,8 @@ a:hover {
     bottom: 5px;
     z-index: 4;
 }
-@media screen and (max-width: 993px) {
-    .whats-new-container {
-        display: none;
-    }
-}
 
+/* phones */
 @media screen and (max-height: 576px) and (max-width: 320px) {
     .info-text {
         width: 200px;
@@ -89,8 +84,11 @@ a:hover {
     h4 {
         display: none;
     }
+    .whats-new-container {
+        display: none;
+    }
 }
-
+/* phones S */
 @media screen and (max-height: 825px) and (max-width: 450px) {
     .collection-container {
         margin-left: 0px;
@@ -98,7 +96,11 @@ a:hover {
     .info-container {
         bottom: 80px;
     }
+    .whats-new-container {
+        display: none;
+    }
 }
+/* big screens */
 @media screen and (min-width: 2100px) {
     img {
         width: 100%;

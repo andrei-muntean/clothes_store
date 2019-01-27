@@ -20,7 +20,7 @@
         <ng-container *ngFor="let product of products, let i = index">
             <div class="col-sm-3">
                 <div class="mb-2">
-                    <app-product-card [product]="product"></app-product-card>
+                    <app-product-card [product]="product" [category]="category"></app-product-card>
                 </div>
             </div>
             <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>

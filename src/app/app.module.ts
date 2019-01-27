@@ -18,18 +18,11 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { ManageproductsComponent } from './manageproducts/manageproducts.component';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 
-/* here we define routs */
+/* here we define routes */
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalog/:categoryId', component: ShopComponent },
   { path: 'catalog/:categoryId/:id', component: ProductDetailsComponent },
-  // { path: 'video', component: VideosComponent },
-  // { path: 'sizing', component: SizingComponent },
-  // { path: 'contact', component: ContactComponent },
-  // { path: 'account', component: AccountComponent },
-  // { path: 'shopingcart', component: ShoppingCartComponent},
-  // { path: 'processorder', component: ProcessOrderComponent},
-  // { path: 'processpayment', component: ProcessPaymentComponent},
   { path: 'manageProducts/addproducts', component: AddProductsComponent},
   { path: 'manageProducts', component: ManageproductsComponent},
   { path: 'aboutMe', component: AboutMeComponent}
