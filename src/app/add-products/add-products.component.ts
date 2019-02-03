@@ -3,7 +3,7 @@ import { ProductsService } from '../products.service';
 import { IImageFile, IStock, IProducttDefinition, ICategory } from '../models';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Ng2ImgMaxService } from '../../../node_modules/ng2-img-max';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 
 @Component({
   selector: 'app-add-products',

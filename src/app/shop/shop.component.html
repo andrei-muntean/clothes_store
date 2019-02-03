@@ -1,9 +1,9 @@
 <div class="content-pane">
-    <div class="shop-tittle">
+    <div class="shop-tittle" [@products]="'fadeInDown'">
         <h1 *ngIf="category">{{category.name}}</h1>
         <h6>Anca Morar</h6>
     </div>
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" [@products]="'fadeInDown'">
         <div class="row">
             <a class="navbar-brand" routerLink="/">
                 <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Brand Logo">
@@ -19,7 +19,7 @@
     <div class="row">
         <ng-container *ngFor="let product of products, let i = index">
             <div class="col-sm-3">
-                <div class="mb-2">
+                <div class="mb-2" [@products]="'fadeIn'">
                     <app-product-card [product]="product" [category]="category"></app-product-card>
                 </div>
             </div>

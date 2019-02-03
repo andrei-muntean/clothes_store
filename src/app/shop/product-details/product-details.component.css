@@ -14,32 +14,6 @@
     top: 42%;
     padding-right: 15px;
 }
-.grid-view {
-    width: 40px;
-    height: 40px;
-    left: 30px;
-    top: calc(100% - 55px);
-    border-radius: 50%;
-    position: absolute;
-    z-index: 2;
-    background-color: white;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-}
-.grid-view:hover, .interior-grid-view:hover {
-    cursor: pointer;
-}
-.grid-view:hover .grid-svg {
-    fill: #f72464;
-}
-.grid-view:active, .grid-view:focus {
-    outline: none;
-}
-.interior-grid-view {
-    padding-top: 6px;
-    cursor: pointer;
-}
 svg {
     cursor: pointer;
     fill: #c4c4c4;
@@ -94,8 +68,8 @@ ngb-carousel {
     max-width: 550px;
     max-height: 650px;
 }
-.row {
-    overflow: hidden;
+.row, .base-container {
+    overflow-x: hidden;
 }
 .col, .row {
     position: relative;
@@ -145,6 +119,9 @@ a:hover {
 }
 h5, h6 {
     cursor: default;
+}
+.social-buttons-panel {
+    padding-left: 10px;
 }
 /* phones */
 @media screen and (max-height: 576px) and (max-width: 320px) {

@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Info div -->
   <div class="info-container">
-    <div class="info-text">
+    <div class="info-text" [@images]="'fadeInRight'">
       <h1>Anca
         <br> Morar</h1>
       <h4>Fashion for everyone</h4>
@@ -11,7 +11,7 @@
   <div class="row justify-content-center inner">
     <!-- Collection div -->
     <div class="col-md-6 col-lg-6 col-xl-6 collection-container">
-      <div class="collection-img">
+      <div class="collection-img" [@images]="'fadeInRight'">
         <img src={{homeImage}}>
       </div>
     </div>
@@ -24,13 +24,13 @@
   <div class="footer-container">
     <div class="nav-container">
       <ul class="nav justify-content-end">
-        <li class="nav-item">
+        <li class="nav-item" [@footButtons]="'fadeInUp0sec'">
           <a class="nav-link" href="https://facebook.com/AncaLidiaMorar/">Facebook</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" [@footButtons]="'fadeInUp2sec'">
           <a class="nav-link" href="https://www.instagram.com/ancalmorar/">Instagram</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" [@footButtons]="'fadeInUp4sec'">
           <a class="nav-link" href="https://ancasfashionprerogative.com">Blog</a>
         </li>
       </ul>

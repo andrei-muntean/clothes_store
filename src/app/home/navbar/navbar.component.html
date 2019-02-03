@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" routerLink="/">
+  <a class="navbar-brand" routerLink="/" [@navButtons]="!shouldAnimateNav ? 'fadeIn' : undefined">
     <img src="assets/images/logo.png" alt="Anca Morar Logo">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -8,16 +8,16 @@
   </button>
   <div id="navbarSupportedContent" [@slideInOut]="shouldAnimateNav ? animationState : undefined" class="navbar-div-list" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-center">
-      <li class="nav-item">
+      <li class="nav-item" [@navButtons]="!shouldAnimateNav ? 'fadeInDown-1' : undefined">
         <a class="nav-link" [routerLink]="['/catalog/', -1]">New</a>
       </li>
-      <li class="nav-item" *ngFor='let category of categories'>
+      <li class="nav-item" *ngFor='let category of categories; let i = index' [@navButtons]="!shouldAnimateNav ? 'fadeInDown'+i : undefined">
         <a class="nav-link" [routerLink]="['/catalog/', category.categoryId]">{{category.name}}</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [@navButtons]="!shouldAnimateNav ? 'fadeInDown5' : undefined">
         <a class="nav-link" routerLink="/aboutMe" (click)="toggleCollapsed()">About Me</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [@navButtons]="!shouldAnimateNav ? 'fadeInDown6' : undefined">
         <a class="nav-link" href="https://www.etsy.com/shop/AncaLMorar">Shop</a>
       </li>
     </ul>

@@ -17,15 +17,17 @@ import { HomeNewComponent } from './home/home-new/home-new.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { ManageproductsComponent } from './manageproducts/manageproducts.component';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { ShareButtonModule } from '@ngx-share/button';
+import 'hammerjs';
 
 /* here we define routes */
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalog/:categoryId', component: ShopComponent },
   { path: 'catalog/:categoryId/:id', component: ProductDetailsComponent },
-  { path: 'manageProducts/addproducts', component: AddProductsComponent},
-  { path: 'manageProducts', component: ManageproductsComponent},
-  { path: 'aboutMe', component: AboutMeComponent}
+  { path: 'manageProducts/addproducts', component: AddProductsComponent },
+  { path: 'manageProducts', component: ManageproductsComponent },
+  { path: 'aboutMe', component: AboutMeComponent }
 ];
 
 @NgModule({
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    Ng2ImgMaxModule
+    Ng2ImgMaxModule,
+    ShareButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

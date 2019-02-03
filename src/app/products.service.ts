@@ -2,7 +2,7 @@ import { IProduct, IProducttDefinition } from './models';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError } from '../../node_modules/rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 
 @Injectable({

@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";  
+@import "~bootstrap/dist/css/bootstrap.css";
+/* Share button theme */
+@import '~@ngx-share/button/themes/default/default-theme.css';
+
 @font-face {
     font-family: constant;
     src: url(/assets/fonts/constant.ttf) format("truetype");

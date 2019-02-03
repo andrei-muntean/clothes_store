@@ -1,15 +1,23 @@
-import { CategoriesService } from './../categories.service';
+import { fadeInDown } from './../../animations';
+import { trigger, animate, keyframes, transition } from '@angular/animations';
+import { CategoriesService } from '../categories.service';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory } from './../models';
+import { ICategory } from '../models';
 import { IProduct } from '../models';
 import { ProductsService } from '../products.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { isNgTemplate } from '../../../node_modules/@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import * as kf from '../../animations'
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css'],
+  animations: [
+    trigger('products', [
+      transition('* => fadeIn', animate(1000, keyframes(kf.fadeIn))),
+      transition('* => fadeInDown', animate(1000, keyframes(kf.fadeInDown)))
+    ])
+  ]
 })
 export class ShopComponent implements OnInit {
 
@@ -40,7 +48,7 @@ export class ShopComponent implements OnInit {
         this.category = data.find(item => item.categoryId === this._categoryId);
       });
     } else {
-      this.category = {name: 'New', categoryId: -1};
+      this.category = { name: 'New', categoryId: -1 };
     }
     this._productService.getProducts(this.page - 1, 20, this._categoryId)
       .subscribe(

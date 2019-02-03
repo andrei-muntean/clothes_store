@@ -1,4 +1,4 @@
-<div *ngIf="product">
+<div *ngIf="product" class="base-container">
   <div class="prev-arrow">
     <div class="interior-prev-arrow">
       <a class="anchor-class" (click)="goToPrevProduct()" ng-disabled="!prevProduct">
@@ -38,31 +38,28 @@
       </ol>
     </div>
   </nav>
-  <div class="row">
+  <div class="row" [@carouselAnimator]="animationState" (@carouselAnimator.done)="resetAnimationState()" (swipeleft)="goToNextProduct()"
+    (swiperight)="goToPrevProduct()">
     <div class="logo-brand" routerLink="/">
       <img class="logo" src="assets/images/logo.png" width="70" height="70" alt="Anca Morar Logo">
       <p class="logo-text">Designed By
         <br> Anca Morar</p>
     </div>
-    <div class="col-xl-6 carousel-product" [@carousel]="product">
-      <ngb-carousel class="products-carousel">
-        <ng-template ngbSlide *ngFor="let image of images">
-          <img class="carousel-img" src="https://s3.us-east-2.amazonaws.com/{{image.content}}" alt="image.name">
-        </ng-template>
-      </ngb-carousel>
-      <div class="grid-view" [routerLink]="['/catalog/', product.category.categoryId]">
-        <div class="interior-grid-view">
-          <a class="anchor-class">
-            <svg class="grid-svg" height="16px" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-              width="16px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <path d="M3,0H1C0.45,0,0,0.45,0,1v2c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1V1C4,0.45,3.55,0,3,0z M9,0H7C6.45,0,6,0.45,6,1v2  c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1V1C10,0.45,9.55,0,9,0z M15,0h-2c-0.55,0-1,0.45-1,1v2c0,0.55,0.45,1,1,1h2  c0.55,0,1-0.45,1-1V1C16,0.45,15.55,0,15,0z M3,6H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1V7C4,6.45,3.55,6,3,6  z M9,6H7C6.45,6,6,6.45,6,7v2c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1V7C10,6.45,9.55,6,9,6z M15,6h-2c-0.55,0-1,0.45-1,1v2  c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1V7C16,6.45,15.55,6,15,6z M3,12H1c-0.55,0-1,0.45-1,1v2c0,0.55,0.45,1,1,1h2  c0.55,0,1-0.45,1-1v-2C4,12.45,3.55,12,3,12z M9,12H7c-0.55,0-1,0.45-1,1v2c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-2  C10,12.45,9.55,12,9,12z M15,12h-2c-0.55,0-1,0.45-1,1v2c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-2C16,12.45,15.55,12,15,12z"
-              />
-            </svg>
-          </a>
-        </div>
+    <div class="col-xl-6 carousel-product">
+      <div class="image-product-container">
+        <ngb-carousel class="products-carousel">
+          <ng-template ngbSlide *ngFor="let image of images">
+            <img class="carousel-img" src="https://s3.us-east-2.amazonaws.com/{{image.content}}" alt="image.name">
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="row social-buttons-panel">
+        <share-button button="facebook" text="Share" showText="true" [url]="url"></share-button>
+        <share-button button="twitter" text="Share" showText="true" [url]="url"></share-button>
+        <share-button button="pinterest" text="Share" showText="true" [url]="url" [description]="text" [image]="media"></share-button>
       </div>
     </div>
-    <div class="col col-xl" [@product]="product">
+    <div class="col col-xl">
       <div class="container">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">

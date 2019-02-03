@@ -1,9 +1,9 @@
-import { CategoriesService } from './../categories.service';
-import { ICategory, IImageFile, IProducttDefinition, IStock } from './../models';
-import { ProductsService } from './../products.service';
+import { CategoriesService } from '../categories.service';
+import { ICategory, IImageFile, IProducttDefinition, IStock } from '../models';
+import { ProductsService } from '../products.service';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../models';
-import { NgForm } from '../../../node_modules/@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-manageproducts',

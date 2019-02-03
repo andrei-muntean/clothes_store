@@ -1,4 +1,4 @@
-import { IImageFile, ICategory } from './../../models';
+import { IImageFile, ICategory } from '../../models';
 import { IProduct } from '../../models';
 import { Component, Input } from '@angular/core';
 
